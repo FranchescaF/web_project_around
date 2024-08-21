@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Instagram</title>
+    <title>Project around</title>
     <meta name="author" content="Fatima Zelaya" />
-    <meta name="description" content="" />
+    <meta name="description" content="Project around" />
     <meta name="keywords" content="proyecto, html, css, java script" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="./pages/index.css" />
@@ -13,22 +13,151 @@
   <body>
     <div class="page">
       <header class="header">
-        <img
-          src="./images/logo.jpg"
-          alt="Instagram Logo"
-          class="header__logo"
-        />
+        <img src="./images/logo.png" alt="Logo" class="header__logo" />
       </header>
-      <main class="main"></main>
+      <section class="profile">
+        <img
+          class="profile__avatar"
+          src="./images/avatar.jpg"
+          alt="Avatar imagen"
+        />
+        <div class="profile__content">
+          <div class="profile__info">
+            <p class="profile__name">Jacques Cousteau</p>
+            <p class="profile__hobbie">Explorador</p>
+          </div>
+          <a href="#" class="profile__edit-button">
+            <img
+              src="./images/Edit-Button.png"
+              alt="Edit button"
+              class="edit__button"
+            />
+          </a>
+        </div>
+        <a href="#" class="profile__add-button">
+          <img
+            src="./images/Add-Button.png"
+            alt="Add button"
+            class="add__button"
+          />
+        </a>
+      </section>
+      <main class="main">
+        <ul class="elements__container">
+          <li class="element__card">
+            <img src="./images/img1.jpg" alt="Imagen 1" class="element__img" />
+            <div class="element__content">
+              <p class="element__text">Valle de Yosemite</p>
+              <a href="#" class="element__like">
+                <img
+                  src="./images/like_button.png"
+                  alt="Like button"
+                  class="like__button"
+                />
+              </a>
+            </div>
+          </li>
+          <li class="element__card">
+            <img src="./images/img2.jpg" alt="Imagen 2" class="element__img" />
+            <div class="element__content">
+              <p class="element__text">Lago Louise</p>
+              <a href="#" class="element__like">
+                <img
+                  src="./images/like_button.png"
+                  alt="Like button"
+                  class="like__button"
+                />
+              </a>
+            </div>
+          </li>
+          <li class="element__card">
+            <img src="./images/img4.jpg" alt="Imagen 3" class="element__img" />
+            <div class="element__content">
+              <p class="element__text">Montañas Calvas</p>
+              <a href="#" class="element__like">
+                <img
+                  src="./images/like_button.png"
+                  alt="Like button"
+                  class="like__button"
+                />
+              </a>
+            </div>
+          </li>
+          <li class="element__card">
+            <img src="./images/img5.jpg" alt="Imagen 4" class="element__img" />
+            <div class="element__content">
+              <p class="element__text">Latemar</p>
+              <a href="#" class="element__like">
+                <img
+                  src="./images/like_button.png"
+                  alt="Like button"
+                  class="like__button"
+                />
+              </a>
+            </div>
+          </li>
+          <li class="element__card">
+            <img src="./images/img6.jpg" alt="Imagen 5" class="element__img" />
+            <div class="element__content">
+              <p class="element__text">Vanois National...</p>
+              <a href="#" class="element__like">
+                <img
+                  src="./images/like_button.png"
+                  alt="Like button"
+                  class="like__button"
+                />
+              </a>
+            </div>
+          </li>
+          <li class="element__card">
+            <img src="./images/img7.jpg" alt="Imagen 6" class="element__img" />
+            <div class="element__content">
+              <p class="element__text">Lago di Braies</p>
+              <a href="#" class="element__like">
+                <img
+                  src="./images/like_button.png"
+                  alt="Like button"
+                  class="like__button"
+                />
+              </a>
+            </div>
+          </li>
+        </ul>
+      </main>
       <footer class="footer">
         <p class="footer__copyright">&copy;2024 Franchesca Zelaya</p>
       </footer>
     </div>
-    <div class="popup">
-      <div class="popup__overlay"></div>
-      <div class="popup__container">
-        <form></form>
-      </div>
+    <div class="popup popup__opened" id="popup-profile">
+      <form class="form popup__form" id="form-profile" novalidate>
+        <img
+          class="form__close-button"
+          src="images/Close Icon.png"
+          alt="boton para cerrar"
+          id="close-profile-form"
+        />
+        <h2 class="form__title">Editar perfil</h2>
+        <input
+          type="text"
+          class="form__name"
+          id="input-name"
+          name="name"
+          placeholder="Nombre"
+          required
+        />
+        <span class="input-error input-name-error"></span>
+        <input
+          type="text"
+          class="form__hobbie"
+          id="input-hobbie"
+          name="hobbie"
+          placeholder="Acerca de mi"
+          required
+        />
+        <span class="input-error input-hobbie-error"></span>
+        <button type="submit" class="form__submit">Guardar</button>
+      </form>
     </div>
+    <script src="./scripts/index.js" type="module"></script>
   </body>
 </html>
