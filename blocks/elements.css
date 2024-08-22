@@ -12,17 +12,6 @@
   grid-column-gap: 17px;
 }
 
-.element__content {
-  display: flex;
-  justify-content: space-between;
-  margin: 25px 15px 31px 21px;
-  gap: 10px;
-}
-.element__img {
-  width: 282px;
-  height: 282px;
-}
-
 .element__card {
   background-color: white;
   color: black;
@@ -35,6 +24,17 @@
   opacity: 0px;
 }
 
+.element__img {
+  width: 282px;
+  height: 282px;
+}
+.element__content {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 15px 31px 21px;
+  gap: 10px;
+}
+
 .element__text {
   font-family: Inter;
   font-size: 24px;
@@ -43,7 +43,14 @@
   text-align: left;
 }
 
-.like__button {
+.element__like {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.element__like img {
   width: 21px;
   height: 19px;
   margin: 5px 3px -1px auto;
