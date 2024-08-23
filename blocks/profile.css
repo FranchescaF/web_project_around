@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   width: 880px;
-  height: 120px;
+  height: 100%;
   margin: auto;
   gap: 0px;
   opacity: 0px;
@@ -81,4 +81,46 @@
   display: block;
   width: 150px;
   height: 50px;
+}
+
+@media (max-width: 500px) {
+  .profile {
+    flex-direction: column;
+    width: 282px;
+    margin: 0px;
+
+    margin: 0px auto 36px auto;
+  }
+
+  .profile__name {
+    font-family: Inter;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26.63px;
+    text-align: center;
+  }
+
+  .profile__info {
+    margin-top: 30px;
+    margin-bottom: 36px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin-top: 34px;
+  }
+  .profile__edit-button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .profile__add-button img {
+    width: 282px;
+    height: 50px;
+    border-radius: 2px;
+  }
 }

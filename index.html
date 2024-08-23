@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project around</title>
-    <meta name="author" content="Fatima Zelaya" />
+    <meta name="author" content="Franchesca Fatima Zelaya" />
     <meta name="description" content="Project around" />
     <meta
       name="keywords"
@@ -16,25 +16,35 @@
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.png" alt="Logo" class="header__logo" />
+        <img
+          src="./images/logo.png"
+          alt="Logo del proyecto"
+          class="header__logo"
+        />
       </header>
       <section class="profile">
         <img
           class="profile__avatar"
           src="./images/avatar.jpg"
-          alt="Avatar imagen"
+          alt="Avatar de Jacques Cousteau"
         />
         <div class="profile__content">
           <div class="profile__info">
             <p class="profile__name">Jacques Cousteau</p>
             <p class="profile__hobbie">Explorador</p>
           </div>
-          <button class="profile__edit-button">
-            <img src="./images/Edit-Button.png" alt="Edit button" />
+          <button class="profile__edit-button" aria-label="Editar perfil">
+            <img
+              src="./images/Edit-Button.png"
+              alt="Botón para editar perfil"
+            />
           </button>
         </div>
-        <button class="profile__add-button">
-          <img src="./images/Add-Button.png" alt="Add button" />
+        <button class="profile__add-button" aria-label="Agregar nueva imagen">
+          <img
+            src="./images/Add-Button.png"
+            alt="Botón para agregar nueva imagen"
+          />
         </button>
       </section>
       <main class="main">
@@ -43,8 +53,8 @@
             <img src="./images/img1.jpg" alt="Imagen 1" class="element__img" />
             <div class="element__content">
               <p class="element__text">Valle de Yosemite</p>
-              <button class="element__like">
-                <img src="./images/like_button.png" alt="Like button" />
+              <button class="element__like" aria-label="Me gusta">
+                <img src="./images/like_button.png" alt="Botón de me gusta" />
               </button>
             </div>
           </li>
@@ -52,8 +62,8 @@
             <img src="./images/img2.jpg" alt="Imagen 2" class="element__img" />
             <div class="element__content">
               <p class="element__text">Lago Louise</p>
-              <button class="element__like">
-                <img src="./images/like_button.png" alt="Like button" />
+              <button class="element__like" aria-label="Me gusta">
+                <img src="./images/like_button.png" alt="Botón de me gusta" />
               </button>
             </div>
           </li>
@@ -61,8 +71,8 @@
             <img src="./images/img4.jpg" alt="Imagen 3" class="element__img" />
             <div class="element__content">
               <p class="element__text">Montañas Calvas</p>
-              <button class="element__like">
-                <img src="./images/like_button.png" alt="Like button" />
+              <button class="element__like" aria-label="Me gusta">
+                <img src="./images/like_button.png" alt="Botón de me gusta" />
               </button>
             </div>
           </li>
@@ -70,8 +80,8 @@
             <img src="./images/img5.jpg" alt="Imagen 4" class="element__img" />
             <div class="element__content">
               <p class="element__text">Latemar</p>
-              <button class="element__like">
-                <img src="./images/like_button.png" alt="Like button" />
+              <button class="element__like" aria-label="Me gusta">
+                <img src="./images/like_button.png" alt="Botón de me gusta" />
               </button>
             </div>
           </li>
@@ -79,8 +89,8 @@
             <img src="./images/img6.jpg" alt="Imagen 5" class="element__img" />
             <div class="element__content">
               <p class="element__text">Vanois National...</p>
-              <button class="element__like">
-                <img src="./images/like_button.png" alt="Like button" />
+              <button class="element__like" aria-label="Me gusta">
+                <img src="./images/like_button.png" alt="Botón de me gusta" />
               </button>
             </div>
           </li>
@@ -88,8 +98,8 @@
             <img src="./images/img7.jpg" alt="Imagen 6" class="element__img" />
             <div class="element__content">
               <p class="element__text">Lago di Braies</p>
-              <button class="element__like">
-                <img src="./images/like_button.png" alt="Like button" />
+              <button class="element__like" aria-label="Me gusta">
+                <img src="./images/like_button.png" alt="Botón de me gusta" />
               </button>
             </div>
           </li>
@@ -100,6 +110,7 @@
       </footer>
     </div>
     <div class="popup" id="popup-profile">
+      <div class="form popup__overlay"></div>
       <form class="form popup__form" id="form-profile" novalidate>
         <img
           class="form__close-button"
@@ -110,7 +121,7 @@
         <h2 class="form__title">Editar perfil</h2>
         <input
           type="text"
-          class="form__name"
+          class="form__input"
           id="input-name"
           name="name"
           placeholder="Nombre"
@@ -119,10 +130,10 @@
         <span class="input-error input-name-error"></span>
         <input
           type="text"
-          class="form__hobbie"
+          class="form__input"
           id="input-hobbie"
           name="hobbie"
-          placeholder="Acerca de mi"
+          placeholder="Acerca de mí"
           required
         />
         <span class="input-error input-hobbie-error"></span>

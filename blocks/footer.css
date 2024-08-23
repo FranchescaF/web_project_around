@@ -1,9 +1,10 @@
 .footer {
   width: 318px;
   height: 18px;
-  opacity: 0px;
+  opacity: 1px;
   display: flex;
-  align-items: left;
+  justify-content: flex-end; /* Alinea el contenido a la derecha */
+  align-items: center; /* Alinea verticalmente el contenido al centro */
   color: #545454;
   margin: 67px auto 60px auto;
 }
