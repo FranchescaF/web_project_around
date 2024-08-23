@@ -32,6 +32,12 @@
   flex-direction: column;
 }
 
+.form .popup__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile__name {
   font-family: Inter;
   font-size: 42px;
