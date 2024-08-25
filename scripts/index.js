@@ -8,7 +8,6 @@ const formProfile = document.querySelector("#form-profile");
 const closeButton = document.querySelector(".form__close-button");
 
 function handleOpenProfile(evt) {
-  console.log(popupContainer);
   popupContainer.classList.add("popup__show");
 }
 
@@ -16,7 +15,6 @@ function handleCloseProfile(evt) {
   popupContainer.classList.remove("popup__show");
 }
 
-console.log(profileButton);
 profileButton.addEventListener("click", handleOpenProfile);
 
 closeButton.addEventListener("click", handleCloseProfile);
