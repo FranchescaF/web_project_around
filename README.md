@@ -7,10 +7,12 @@
 ### Prototipos de Alta Fidelidad:
 
 Vista Principal de Alta fidelidad:
+
 ![aquí](./images/Image.png)
 
 Video interactivo funcional:
-![aquí](./images/moved_project-4-01-eng.mp4)
+
+![aquí](https://practicum-content.s3.us-west-1.amazonaws.com/web-developer/learning-materials/moved_project-4-01-eng.mp4)
 
 ## 5. Lenguajes y Herramientas Utilizadas
 
