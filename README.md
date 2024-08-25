@@ -7,10 +7,10 @@
 ### Prototipos de Alta Fidelidad:
 
 Vista Principal de Alta fidelidad:
-![aquí](./src/images/Image.png)
+![aquí](./images/Image.png)
 
 Video interactivo funcional:
-![aquí](./src/images/moved_project-4-01-eng.mp4)
+![aquí](./images/moved_project-4-01-eng.mp4)
 
 ## 5. Lenguajes y Herramientas Utilizadas
 
@@ -29,7 +29,8 @@ En el desarrollo de nuestro proyecto, hemos utilizado un lenguaje de programaci�
 ### Herramientas Adicionales
 
 - **Control de Versiones (Git):** Esencial para el seguimiento eficiente de cambios en el código.
-- **Prototipado y Diseño de Interfaz (Figma):** Utilizado para el prototipado y diseño de la interfaz, permitiendo la creación de maquetas visuales y la planificación de la experiencia de usuario. [Prototipo-figma](https://www.figma.com/design/vxxm1ZnAdQiBLoX7xYKY6g/Web_Brief_Sprint_5_ES-%7C-Alrededor-de-los-EEUU-%7C-desktop-%2B-mobile?node-id=9492-2&t=uBYQY8HCCu7kJEH1-1) -**Visual Studio Code:** Se ha utilizado Visual Studio Code como entorno de desarrollo para la implementación del diseño y la gestión del código.
+- **Prototipado y Diseño de Interfaz (Figma):** Utilizado para el prototipado y diseño de la interfaz, permitiendo la creación de maquetas visuales y la planificación de la experiencia de usuario. [Prototipo-figma](https://www.figma.com/design/vxxm1ZnAdQiBLoX7xYKY6g/Web_Brief_Sprint_5_ES-%7C-Alrededor-de-los-EEUU-%7C-desktop-%2B-mobile?node-id=9492-2&t=uBYQY8HCCu7kJEH1-1)
+- **Visual Studio Code:** Se ha utilizado Visual Studio Code como entorno de desarrollo para la implementación del diseño y la gestión del código.
 
 Este lenguaje y herramientas nos han permitido desarrollar una aplicación web completa y funcional, con un diseño atractivo y una experiencia de usuario optimizada. La combinación de HTML semántico, CSS responsive, JavaScript y herramientas como Git y Figma ha sido crucial para lograr un producto robusto, interactivo y de alta calidad.
 
@@ -40,8 +41,8 @@ Este lenguaje y herramientas nos han permitido desarrollar una aplicación web c
 ## Instrucciones de Uso
 
 1. Clona el repositorio.
-2. Abre los archivos `js` en tu navegador para explorar DATAVERSE-CHAT.
-3. Disfruta de la experiencia inmersiva y mira como se desarrollo el poryecto.
+2. Abre los archivos `js, html, css` en tu navegador para explorar PROJECT AROUND.
+3. Disfruta de la experiencia inmersiva y mira como se desarrollo el proyecto.
 
 ### Equipo de Diseño y Desarrollo
 
