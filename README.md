@@ -10,9 +10,9 @@ Vista Principal de Alta fidelidad:
 
 ![aquí](./images/Image.png)
 
-Video interactivo funcional:
+Cuadro emergente "Editar perfil":
 
-![aquí](https://practicum-content.s3.us-west-1.amazonaws.com/web-developer/learning-materials/moved_project-4-01-eng.mp4)
+![aquí](./images/emergente.png)
 
 ## 5. Lenguajes y Herramientas Utilizadas
 

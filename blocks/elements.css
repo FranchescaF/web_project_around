@@ -1,6 +1,6 @@
 .elements__container {
   width: 880px;
-  margin: 50px auto 0 auto;
+  margin: 50px auto 67px auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,17 @@
 
 @media (min-width: 501px) and (max-width: 768px) {
   .elements__container {
+    width: 100%; /* Ajusta el ancho para adaptarse al contenedor */
     grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 15px;
+    grid-column-gap: 15px;
+    padding: 0 20px; /* Agrega padding para un mejor espaciado en los bordes */
+  }
+
+  .element__card {
+    width: 100%; /* Asegura que las tarjetas se adapten al contenedor */
+    max-width: 340px; /* Limita el ancho máximo */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
   }
 }
 
@@ -66,8 +76,14 @@
 
 @media (max-width: 500px) {
   .elements__container {
+    width: 100%; /* Ajusta el ancho al 100% para pantallas pequeñas */
     grid-template-columns: repeat(1, 1fr);
-    width: 282px;
-    padding: 0px;
+    padding: 0;
+  }
+
+  .element__card {
+    width: 100%; /* Asegura que las tarjetas se adapten al contenedor */
+    max-width: 280px; /* Ajusta el ancho máximo para pantallas pequeñas */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
   }
 }

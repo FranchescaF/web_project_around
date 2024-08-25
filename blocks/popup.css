@@ -14,6 +14,14 @@
 .popup__overlay {
   background-color: rgba(0, 0, 0, 0.5); /* Opacidad inicial */
   transition: background-color 0.3s ease; /* Animación suave */
+  position: fixed; /* Asegura que el overlay cubra toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup__overlay--dark {
@@ -28,6 +36,8 @@
   background-color: white;
   flex-direction: column;
   position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega sombra para mejorar la estética */
+  border-radius: 8px; /* Bordes redondeados para mejorar la estética */
 }
 
 .popup__show {
@@ -40,10 +50,11 @@
   position: absolute;
   top: -50px;
   left: 446px;
+  cursor: pointer; /* Añade cursor pointer para indicar que es clickeable */
 }
 
 .form__title {
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 24px;
   font-weight: 900;
   line-height: 29.05px;
@@ -51,23 +62,16 @@
   width: 330px;
   margin-top: 54px;
 }
-#input-name {
-  width: 358px;
-  height: 27.26px;
-  margin: 54px 37px 29.74px 36px;
-  border-top: 1px;
-  border-color: #c4c4c4;
-  color: #c4c4c4;
-}
 
+#input-name,
 #input-hobbie {
-  width: 358px;
-  height: 27.34px;
-  border: 1px;
-  margin: 0 37px 48px 36px;
-  border-top: 1px;
-  border-color: #c4c4c4;
-  color: #c4c4c4;
+  width: calc(100% - 74px); /* Ajusta el ancho para padding/margins */
+  height: 27px;
+  margin: 20px 0; /* Margen superior/inferior uniformes */
+  border: 1px solid #c4c4c4; /* Especifica el estilo de borde completo */
+  color: #333; /* Cambia el color de texto para mejorar la visibilidad */
+  padding: 5px; /* Agrega padding para mejor usabilidad */
+  border-radius: 4px; /* Bordes redondeados para mejor estética */
 }
 
 .form__submit {
@@ -76,10 +80,12 @@
   border-radius: 2px;
   background-color: black;
   color: white;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 21.78px;
   text-align: center;
-  margin: 0px auto 36.51px auto;
+  margin: 0 auto; /* Centra el botón horizontalmente */
+  cursor: pointer; /* Añade cursor pointer para indicar que es clickeable */
+  border: none; /* Remueve el borde del botón */
 }
