@@ -1,8 +1,9 @@
 .elements__container {
-  width: 880px;
+  max-width: 880px;
+  width: 100%;
   margin: 50px auto 67px auto;
   display: flex;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
   opacity: 0px;
   list-style: none;
@@ -10,6 +11,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 20px;
   grid-column-gap: 17px;
+  padding: 0px;
 }
 
 .element__card {
@@ -18,14 +20,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 282px;
+  max-width: 282px;
+  width: 100%;
   height: 361px;
   border-radius: 10px;
   opacity: 0px;
 }
 
 .element__img {
-  width: 282px;
+  width: 100%;
   height: 282px;
 }
 .element__content {
@@ -60,13 +63,21 @@
   .elements__container {
     width: 100%; /* Ajusta el ancho para adaptarse al contenedor */
     grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 15px;
-    grid-column-gap: 15px;
+    gap: 15px;
   }
 
   .element__card {
-    width: 282px;
+    max-width: 282px;
+    width: 100%;
     height: auto; /* Permite que la altura se ajuste automáticamente */
+  }
+
+  .element__text {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 29.05px;
+    text-align: left;
   }
 }
 
@@ -82,5 +93,13 @@
     width: 100%; /* Asegura que las tarjetas se adapten al contenedor */
     max-width: 280px; /* Ajusta el ancho máximo para pantallas pequeñas */
     height: auto; /* Permite que la altura se ajuste automáticamente */
+  }
+
+  .element__text {
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29.05px;
+    text-align: left;
   }
 }
