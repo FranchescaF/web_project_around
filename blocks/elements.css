@@ -62,12 +62,10 @@
     grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 15px;
     grid-column-gap: 15px;
-    padding: 0 20px; /* Agrega padding para un mejor espaciado en los bordes */
   }
 
   .element__card {
-    width: 100%; /* Asegura que las tarjetas se adapten al contenedor */
-    max-width: 340px; /* Limita el ancho máximo */
+    width: 282px;
     height: auto; /* Permite que la altura se ajuste automáticamente */
   }
 }
@@ -76,7 +74,6 @@
 
 @media (max-width: 500px) {
   .elements__container {
-    width: 100%; /* Ajusta el ancho al 100% para pantallas pequeñas */
     grid-template-columns: repeat(1, 1fr);
     padding: 0;
   }

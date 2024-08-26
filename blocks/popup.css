@@ -24,10 +24,6 @@
   align-items: center;
 }
 
-.popup__overlay--dark {
-  background-color: rgba(0, 0, 0, 0.8); /* Opacidad más oscura */
-}
-
 .popup__form {
   display: flex;
   align-items: center;

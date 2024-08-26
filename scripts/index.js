@@ -25,8 +25,3 @@ formProfile.addEventListener("submit", function (evt) {
   profileHobbie.textContent = inputHobbie.value; // Actualiza el hobbie del perfil
   handleCloseProfile(); // Cierra el popup después de actualizar el perfil
 });
-
-formProfile.addEventListener("click", function () {
-  const overlay = document.querySelector(".popup__overlay");
-  overlay.classList.add("popup__overlay--dark");
-});
