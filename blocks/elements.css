@@ -64,6 +64,9 @@
     width: 100%; /* Ajusta el ancho para adaptarse al contenedor */
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+    margin: 15px;
+    justify-items: center;
+    align-items: center;
   }
 
   .element__card {
