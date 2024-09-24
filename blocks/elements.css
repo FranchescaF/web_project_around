@@ -14,7 +14,7 @@
   padding: 0px;
 }
 
-.element__card {
+.template__card {
   background-color: white;
   color: black;
   text-overflow: ellipsis;
@@ -26,8 +26,9 @@
   border-radius: 10px;
   opacity: 0px;
 }
-
-.element__img {
+.element__photo-trash {
+}
+.element__photo {
   width: 100%;
   height: 282px;
 }

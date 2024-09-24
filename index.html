@@ -48,72 +48,61 @@
         </button>
       </section>
       <main class="main">
-        <ul class="elements__container">
-          <li class="element__card">
-            <img src="./images/img1.jpg" alt="Imagen 1" class="element__img" />
-            <div class="element__content">
-              <p class="element__text">Valle de Yosemite</p>
-              <button class="element__like" aria-label="Me gusta">
-                <img src="./images/like_button.png" alt="Botón de me gusta" />
-              </button>
+        <div class="elements__container"></div>
+        <!-- Plantilla de card-->
+        <template class="template__card" id="template__card">
+          <div class="element">
+            <button class="element__photo-trash"></button>
+            <img src="" alt="" class="element__photo-link" />
+            <div class="element__info">
+              <h2 class="element__photo-name"></h2>
+              <button class="element__photo-like"></button>
             </div>
-          </li>
-          <li class="element__card">
-            <img src="./images/img2.jpg" alt="Imagen 2" class="element__img" />
-            <div class="element__content">
-              <p class="element__text">Lago Louise</p>
-              <button class="element__like" aria-label="Me gusta">
-                <img src="./images/like_button.png" alt="Botón de me gusta" />
-              </button>
-            </div>
-          </li>
-          <li class="element__card">
-            <img src="./images/img4.jpg" alt="Imagen 3" class="element__img" />
-            <div class="element__content">
-              <p class="element__text">Montañas Calvas</p>
-              <button class="element__like" aria-label="Me gusta">
-                <img src="./images/like_button.png" alt="Botón de me gusta" />
-              </button>
-            </div>
-          </li>
-          <li class="element__card">
-            <img src="./images/img5.jpg" alt="Imagen 4" class="element__img" />
-            <div class="element__content">
-              <p class="element__text">Latemar</p>
-              <button class="element__like" aria-label="Me gusta">
-                <img src="./images/like_button.png" alt="Botón de me gusta" />
-              </button>
-            </div>
-          </li>
-          <li class="element__card">
-            <img src="./images/img6.jpg" alt="Imagen 5" class="element__img" />
-            <div class="element__content">
-              <p class="element__text">Vanois National...</p>
-              <button class="element__like" aria-label="Me gusta">
-                <img src="./images/like_button.png" alt="Botón de me gusta" />
-              </button>
-            </div>
-          </li>
-          <li class="element__card">
-            <img src="./images/img7.jpg" alt="Imagen 6" class="element__img" />
-            <div class="element__content">
-              <p class="element__text">Lago di Braies</p>
-              <button class="element__like" aria-label="Me gusta">
-                <img src="./images/like_button.png" alt="Botón de me gusta" />
-              </button>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </template>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy;2024 Franchesca Zelaya</p>
       </footer>
     </div>
+    <!-- Insertar una carta-->
+    <div class="popup" id="popup-add-card">
+      <form class="form popup__form" id="form-addCard" novalidate>
+        <img
+          class="form__close-button form__close-button-addCard"
+          src="images/Close Icon.png"
+          alt="boton para cerrar"
+          id="close-addcard-form"
+          required
+        />
+        <h2 class="form__title">Nuevo Lugar</h2>
+        <input
+          class="form__input"
+          type="text"
+          id="input-card-name"
+          placeholder="Titulo"
+          minlength="2"
+          maxlength="40"
+          required
+        />
+        <input
+          class="form__input"
+          type="text"
+          id="input-card-link"
+          placeholder="Enlace a la imagen"
+          minlength="2"
+          maxlength="300"
+          required
+        />
+        <button class="form__create-button">Crear</button>
+      </form>
+    </div>
+    <!-- Modificar nombre y hobbie-->
     <div class="popup" id="popup-profile">
       <div class="form popup__overlay"></div>
       <form class="form popup__form" id="form-profile" novalidate>
         <img
-          class="form__close-button"
+          class="form__close-button form__close-button-profile"
           src="images/Close Icon.png"
           alt="boton para cerrar"
           id="close-profile-form"
