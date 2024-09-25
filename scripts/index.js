@@ -63,7 +63,15 @@ function addCard(link, name) {
   const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
   const cardImage = cardElement.querySelector(".element__photo-link");
   const cardTitle = cardElement.querySelector(".element__photo-name");
+  const btnDelete = cardElement.querySelector(".element__photo-trash");
+  const btnLike = cardElement.querySelector(".element__photo-like");
 
+  btnLike.addEventListener("click", function () {
+    btnLike.classList.toggle("element__photo-like_active");
+  });
+  btnDelete.addEventListener("click", function () {
+    cardContainer.remove();
+  });
   cardImage.src = link;
   cardImage.alt = name;
   cardTitle.textContent = name;

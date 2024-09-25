@@ -14,7 +14,8 @@
   padding: 0px;
 }
 
-.template__card {
+.element {
+  position: relative;
   background-color: white;
   color: black;
   text-overflow: ellipsis;
@@ -27,37 +28,60 @@
   opacity: 0px;
 }
 .element__photo-trash {
+  background: url("../images/trash.png") no-repeat center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  height: 19.3px;
+  width: 18px;
+  position: absolute; /* Posiciona el botón relativo al contenedor */
+  top: 10px; /* Asegura que esté en la parte superior */
+  right: 10px; /* Asegura que esté en la parte derecha */
+  z-index: 10; /* Asegura que el botón esté por encima de la imagen */
 }
-.element__photo {
+.element__photo-link {
   width: 100%;
   height: 282px;
-}
-.element__content {
-  display: flex;
-  justify-content: space-between;
-  margin: 25px 15px 31px 21px;
-  gap: 10px;
+  object-fit: cover;
 }
 
-.element__text {
+.element__info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.element__photo-name {
   font-family: Inter;
   font-size: 24px;
   font-weight: 900;
   line-height: 29.05px;
   text-align: left;
+  flex-grow: 1;
+  white-space: nowrap; /* Evita el salto de línea */
+  overflow: hidden; /* Esconde el contenido que se desborda */
+  text-overflow: ellipsis; /* Muestra los puntos suspensivos si el texto es muy largo */
 }
 
-.element__like {
-  background: none;
+.element__photo-like {
+  background: url("../images/like_button.png") no-repeat center;
+  background-size: contain;
   border: none;
-  padding: 0;
   cursor: pointer;
-}
-
-.element__like img {
   width: 21px;
   height: 19px;
-  margin: 5px 3px -1px auto;
+  flex-shrink: 0;
+}
+
+.element__photo-like_active {
+  background: url("../images/photo__like.png") no-repeat center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  width: 21px;
+  height: 19px;
+  flex-shrink: 0;
 }
 
 @media (min-width: 501px) and (max-width: 768px) {
@@ -70,13 +94,13 @@
     align-items: center;
   }
 
-  .element__card {
+  .element {
     max-width: 282px;
     width: 100%;
     height: auto; /* Permite que la altura se ajuste automáticamente */
   }
 
-  .element__text {
+  .element__photo-name {
     font-family: Inter;
     font-size: 20px;
     font-weight: 900;
@@ -93,13 +117,13 @@
     padding: 0;
   }
 
-  .element__card {
+  .element {
     width: 100%; /* Asegura que las tarjetas se adapten al contenedor */
     max-width: 280px; /* Ajusta el ancho máximo para pantallas pequeñas */
     height: auto; /* Permite que la altura se ajuste automáticamente */
   }
 
-  .element__text {
+  .element__photo-name {
     font-family: Inter;
     font-size: 24px;
     font-weight: 900;

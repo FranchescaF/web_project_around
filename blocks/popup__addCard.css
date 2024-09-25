@@ -1,0 +1,26 @@
+#input-card-name,
+#input-card-link {
+  width: calc(100% - 74px); /* Ajusta el ancho para padding/margins */
+  height: 27px;
+  margin: 20px 0; /* Margen superior/inferior uniformes */
+  border: 1px solid #c4c4c4; /* Especifica el estilo de borde completo */
+  color: #333; /* Cambia el color de texto para mejorar la visibilidad */
+  padding: 5px; /* Agrega padding para mejor usabilidad */
+  border-radius: 4px; /* Bordes redondeados para mejor estética */
+}
+
+.form__create-button {
+  width: 358px;
+  height: 50.15px;
+  border-radius: 2px;
+  background-color: black;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: center;
+  margin: 0 auto; /* Centra el botón horizontalmente */
+  cursor: pointer; /* Añade cursor pointer para indicar que es clickeable */
+  border: none; /* Remueve el borde del botón */
+}
