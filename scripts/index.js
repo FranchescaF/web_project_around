@@ -18,6 +18,7 @@ const closeAddCardButton = document.querySelector(
   ".form__close-button-addCard"
 );
 const createButton = document.querySelector(".form__create-button");
+//Variables para agrandar imagen
 
 // Tarjetas iniciales
 const initialCards = [
@@ -70,7 +71,7 @@ function addCard(link, name) {
     btnLike.classList.toggle("element__photo-like_active");
   });
   btnDelete.addEventListener("click", function () {
-    cardContainer.remove();
+    cardElement.remove();
   });
   cardImage.src = link;
   cardImage.alt = name;
