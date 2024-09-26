@@ -13,13 +13,13 @@ const popupAddCard = document.querySelector("#popup-add-card");
 const formAddCard = document.querySelector("#form-addCard");
 const addButton = document.querySelector(".profile__add-button");
 const inputCardName = document.querySelector("#input-card-name");
-const inputLink = document.querySelector("#input-link");
+const inputLink = document.querySelector("#input-card-link");
 const closeAddCardButton = document.querySelector(
   ".form__close-button-addCard"
 );
 const createButton = document.querySelector(".form__create-button");
 //Variables para agrandar imagen
-
+const popupCardImage = document.querySelector("");
 // Tarjetas iniciales
 const initialCards = [
   {
@@ -78,11 +78,11 @@ function addCard(link, name) {
   cardTitle.textContent = name;
 
   // Añadir eventos de la tarjeta
-  cardImage.addEventListener("click", function () {
-    openPopup(popupAddCard);
-    popupAddCard.querySelector(".element__photo-link").src = link;
-    popupAddCard.querySelector(".element__photo-name").textContent = name;
-  });
+  //  cardImage.addEventListener("click", function () {
+  //    openPopup(popupAddCard);
+  //   popupAddCard.querySelector(".element__photo-link").src = link;
+  //    popupAddCard.querySelector(".element__photo-name").textContent = name;
+  //  });
 
   return cardElement;
 }
@@ -113,8 +113,8 @@ closeAddCardButton.addEventListener("click", function () {
 // Evento para manejar el envío del formulario de perfil
 formProfile.addEventListener("submit", function (evt) {
   evt.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-  profileName.value = inputName.textContent; // Actualiza el nombre del perfil
-  profileHobbie.value = inputHobbie.textContent; // Actualiza el hobbie del perfil
+  profileName.textContent = inputName.value; // Actualiza el nombre del perfil
+  profileHobbie.textContent = inputHobbie.value; // Actualiza el hobbie del perfil
   closePopup(popupProfile); // Cierra el popup después de actualizar el perfil
 });
 
