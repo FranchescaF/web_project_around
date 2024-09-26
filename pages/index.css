@@ -7,6 +7,7 @@
 @import url("../blocks/elements.css");
 @import url("../blocks/popup__profile.css");
 @import url("../blocks/popup__addCard.css");
+@import url("../blocks/popupCard.css");
 
 * {
   margin: 0;

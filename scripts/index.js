@@ -19,7 +19,8 @@ const closeAddCardButton = document.querySelector(
 );
 const createButton = document.querySelector(".form__create-button");
 //Variables para agrandar imagen
-const popupCardImage = document.querySelector("");
+const popupCardImage = document.querySelector("#popup-show-card");
+const popupCardClose = document.querySelector(".popup__close-card");
 // Tarjetas iniciales
 const initialCards = [
   {
@@ -78,11 +79,11 @@ function addCard(link, name) {
   cardTitle.textContent = name;
 
   // Añadir eventos de la tarjeta
-  //  cardImage.addEventListener("click", function () {
-  //    openPopup(popupAddCard);
-  //   popupAddCard.querySelector(".element__photo-link").src = link;
-  //    popupAddCard.querySelector(".element__photo-name").textContent = name;
-  //  });
+  cardImage.addEventListener("click", function () {
+    openPopup(popupCardImage);
+    popupCardImage.querySelector(".popup__photo-link").src = link;
+    popupCardImage.querySelector(".popup__photo-name").textContent = name;
+  });
 
   return cardElement;
 }
@@ -108,6 +109,11 @@ closeButton.addEventListener("click", function () {
 // Evento para cerrar el popup de agregar tarjeta
 closeAddCardButton.addEventListener("click", function () {
   closePopup(popupAddCard);
+});
+
+// Evento para cerrar el popup de la imagen
+popupCardClose.addEventListener("click", function () {
+  closePopup(popupCardImage);
 });
 
 // Evento para manejar el envío del formulario de perfil

@@ -85,3 +85,76 @@
   cursor: pointer; /* Añade cursor pointer para indicar que es clickeable */
   border: none; /* Remueve el borde del botón */
 }
+
+.form__submit:hover {
+  background: #000000cc;
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .popup__form {
+    width: 450px; /* Ajusta el ancho para pantallas medianas */
+    height: auto; /* Deja que la altura se ajuste según el contenido */
+    padding: 20px; /* Agrega padding para mejorar el diseño en pantallas medianas */
+  }
+
+  .form__close-button {
+    top: -45px;
+    left: 400px; /* Ajusta la posición del botón de cerrar */
+  }
+
+  .form__title {
+    font-size: 22px; /* Tamaño de fuente más grande */
+    margin-top: 40px;
+  }
+
+  #input-name,
+  #input-hobbie {
+    width: calc(100% - 40px); /* Ajusta el ancho de los campos de entrada */
+    height: 35px; /* Aumenta la altura para mejor usabilidad */
+  }
+
+  .form__submit {
+    width: 400px; /* Ancho del botón ajustado para pantallas medianas */
+    height: 48px; /* Ajusta la altura del botón */
+  }
+}
+
+@media (max-width: 500px) {
+  .popup__form {
+    width: 282px; /* Usa un ancho flexible para pantallas pequeñas */
+    height: 322px; /* Deja que la altura se ajuste según el contenido */
+  }
+
+  .form__close-button {
+    width: 26px;
+    height: 26px;
+    top: -35px;
+    left: calc(
+      100% - 25px
+    ); /* Alinea el botón de cerrar en pantallas pequeñas */
+  }
+
+  .form__title {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 21.78px;
+    text-align: left;
+    margin: 25px auto 36px 22px;
+  }
+
+  #input-name,
+  #input-hobbie {
+    width: 238px;
+    height: 17px; /* Ajusta la altura de los campos de entrada para pantallas pequeñas */
+    margin-top: 0px;
+    gap: 30px;
+  }
+
+  .form__submit {
+    width: 238px;
+    height: 46px;
+    margin-top: 36px;
+    margin-bottom: 25px;
+  }
+}
