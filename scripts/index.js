@@ -82,6 +82,7 @@ function addCard(link, name) {
   cardImage.addEventListener("click", function () {
     openPopup(popupCardImage);
     popupCardImage.querySelector(".popup__photo-link").src = link;
+    popupCardImage.querySelector(".popup__photo-link").alt = name;
     popupCardImage.querySelector(".popup__photo-name").textContent = name;
   });
 
