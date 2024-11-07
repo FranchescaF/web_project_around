@@ -28,12 +28,38 @@
   display: flex;
   align-items: center;
   width: 430px;
-  height: 330px;
+  height: 350px;
   background-color: white;
   flex-direction: column;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega sombra para mejorar la estética */
   border-radius: 8px; /* Bordes redondeados para mejorar la estética */
+}
+
+/* Estilos para los inputs de los formularios */
+.form__input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: #3498db; /* Borde azul al enfocar el campo */
+}
+
+/* Estilo para el contenedor de los mensajes de error */
+.input-error {
+  font-size: 12px;
+  display: none;
+}
+
+/* Muestra el mensaje de error si el input es inválido */
+.form__input:invalid ~ .input-error {
+  display: block;
 }
 
 .popup__show {
@@ -88,6 +114,26 @@
 
 .form__submit:hover {
   background: #000000cc;
+}
+
+.form__button_disabled {
+  background-color: #d3d3d3; /* Color de fondo gris claro */
+  cursor: not-allowed; /* Cursor para indicar que no es interactivo */
+  pointer-events: none; /* Impide interacciones con el botón */
+  opacity: 0.6; /* Reduce la opacidad para un efecto visual de deshabilitado */
+}
+
+.form__input_type_error {
+  border: 2px solid #e74c3c; /* Borde rojo para indicar error */
+  border-bottom: 1px solid red;
+  background-color: #ffe6e6; /* Fondo ligeramente rojo para resaltar el error */
+}
+
+.form__error_visible {
+  color: #e74c3c; /* Color rojo para el texto de error */
+  font-size: 12px; /* Tamaño de fuente pequeño para el mensaje de error */
+  margin-top: 5px; /* Espaciado superior para separarlo del input */
+  display: block; /* Asegura que el mensaje de error sea visible */
 }
 
 @media (min-width: 501px) and (max-width: 768px) {

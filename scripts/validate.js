@@ -1,13 +1,4 @@
-enableValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".form__input",
-    submitButtonSelector: ".form__submit",
-    inactiveButtonClass: ".form__button_disabled",// boton inactivo
-    inputErrorClass: ".form__input_type_error",//marcado rojo en la linea del formulario
-    errorClass: ".form__error_visible"//error visible 
-  });
-
-
+//Muestra el mensaje de error
 export const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add("form__input_type_error");
@@ -15,13 +6,15 @@ export const showInputError = (formElement, inputElement, errorMessage) => {
     errorElement.classList.add("form__error_visible");
   };
   
+//Oculta el mensaje de erro 
 export const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove("form__input_type_error");
     errorElement.classList.remove("form__error_visible");
     errorElement.textContent = "";
   };
-  
+
+//Revisa si el Input es válido
 export const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
       showInputError(formElement, inputElement, inputElement.validationMessage);
@@ -29,13 +22,15 @@ export const checkInputValidity = (formElement, inputElement) => {
       hideInputError(formElement, inputElement);
     }
   };
-  
+
+//verifica si alguno de los campos es inválido
 export const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
-  
+
+// Habilita o deshabilita el botón de submit
 export const toggleButtonState = (inputList, buttonElement) => {
     console.log(hasInvalidInput(inputList));
     if (hasInvalidInput(inputList)) {
@@ -44,14 +39,15 @@ export const toggleButtonState = (inputList, buttonElement) => {
       buttonElement.classList.remove("form__button_disabled");
     }
   };
-  
+
+// Establece los eventos de validación para cada input
 export  const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(".form__input"));
     const buttonElement = formElement.querySelector(".form__submit");
   
     // aquí, para comprobar el estado del botón al principio
     toggleButtonState(inputList, buttonElement);
-  
+  // Inicializar el estado del botón de submit
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", function () {
         checkInputValidity(formElement, inputElement);
@@ -60,19 +56,27 @@ export  const setEventListeners = (formElement) => {
       });
     });
   };
-  
- export const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll(".popup__form"));
+
+// Activa la validación para todos los formularios
+export const enableValidation = (config) => {
+    const formList = Array.from(document.querySelectorAll(config.formSelector));
     formList.forEach((formElement) => {
       formElement.addEventListener("submit", function (evt) {
         evt.preventDefault();
       });
   
-      const fieldsetList = Array.from(formElement.querySelectorAll(".form__set"));
+      const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+      const buttonElement = formElement.querySelector(config.submitButtonSelector);
   
-      fieldsetList.forEach((fieldset) => {
-        setEventListeners(fieldset);
-      });
+      setEventListeners(formElement, inputList, buttonElement, config);
     });
   };
   
+  enableValidation({
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
+  });

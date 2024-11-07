@@ -1,14 +1,3 @@
-
-import {
-  showInputError,
-  hideInputError,
-  checkInputValidity,
-  hasInvalidInput,
-  toggleButtonState,
-  setEventListeners,
-  enableValidation
-} from './validate.js';
-
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
@@ -17,7 +6,7 @@ const profileHobbie = document.querySelector(".profile__hobbie");
 const inputName = document.querySelector("#input-name");
 const inputHobbie = document.querySelector("#input-hobbie");
 const formProfile = document.querySelector("#form-profile");
-const closeButton = document.querySelector(".form__close-button");
+const closeButton = document.querySelector(".form__close-button-profile");
 // Variables para agregar tarjetas (cards)
 const cardContainer = document.querySelector(".elements__container");
 const popupAddCard = document.querySelector("#popup-add-card");
@@ -26,7 +15,7 @@ const addButton = document.querySelector(".profile__add-button");
 const inputCardName = document.querySelector("#input-card-name");
 const inputLink = document.querySelector("#input-card-link");
 const closeAddCardButton = document.querySelector(
-  ".form__close-button"
+  ".form__close-button-addCard"
 );
 const createButton = document.querySelector(".form__create-button");
 //Variables para agrandar imagen
@@ -113,20 +102,20 @@ profileButton.addEventListener("click", function () {
   openPopup(popupProfile);
 });
 
-// Evento para cerrar el popup de editar perfil
+// Función para cerrar un popup
+function closeAnyPopup(popup) {
+  closePopup(popup); // Se puede reutilizar en todos los popups
+}
+
+// Usar en lugar de los listeners directos
 closeButton.addEventListener("click", function () {
-  console.log('Botón de cerrar presionado');
-  closePopup(popupProfile);
+  closeAnyPopup(popupProfile);
 });
-
-// Evento para cerrar el popup de agregar tarjeta
 closeAddCardButton.addEventListener("click", function () {
-  closePopup(popupAddCard);
+  closeAnyPopup(popupAddCard);
 });
-
-// Evento para cerrar el popup de la imagen
 popupCardClose.addEventListener("click", function () {
-  closePopup(popupCardImage);
+  closeAnyPopup(popupCardImage);
 });
 
 // Evento para manejar el envío del formulario de perfil
@@ -160,4 +149,28 @@ formAddCard.addEventListener("submit", function (evt) {
   }
 });
 
-enableValidation();
+popupAddCard.querySelector('.popup__overlay').addEventListener('click', function () {
+  closePopup(popupAddCard);
+});
+
+popupProfile.querySelector('.popup__overlay').addEventListener('click', function () {
+  closePopup(popupProfile);
+});
+
+// Función para cerrar el popup
+function closePopupOnEscape(evt) {
+  if (evt.key === "Escape") {  // Verifica si la tecla presionada es Escape
+    if (popupCardImage ) {
+      closePopup(popupCardImage); // Llama a la función para cerrar el popup
+    }
+    if (popupProfile) {
+      closePopup(popupProfile); 
+    }
+    if (popupAddCard) {
+      closePopup(popupAddCard); 
+    }
+  }
+}
+
+// Agregar el evento keydown para escuchar la tecla Escape
+document.addEventListener("keydown", closePopupOnEscape);

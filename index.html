@@ -98,18 +98,18 @@
           id="input-card-name"
           placeholder="Titulo"
           minlength="2"
-          maxlength="40"
+          maxlength="30"
           required
         />
+        <span class="input-error input-name-error"></span>
         <input
           class="form__input"
-          type="text"
+          type="url"
           id="input-card-link"
           placeholder="Enlace a la imagen"
-          minlength="2"
-          maxlength="300"
           required
         />
+        <span class="input-error input-name-error"></span>
         <button type="submit" class="form__submit">Crear</button>
       </form>
     </div>
@@ -130,6 +130,8 @@
           id="input-name"
           name="name"
           placeholder="Nombre"
+          minlength="2"
+          maxlength="40"
           required
         />
         <span class="input-error input-name-error"></span>
@@ -139,12 +141,16 @@
           id="input-hobbie"
           name="hobbie"
           placeholder="Acerca de mí"
+          minlength="2"
+          maxlength="200"
           required
         />
         <span class="input-error input-hobbie-error"></span>
         <button type="submit" class="form__submit">Guardar</button>
       </form>
     </div>
+    <script src="./scripts/validate.js" type="module"></script>
     <script src="./scripts/index.js" type="module"></script>
+    
   </body>
 </html>
