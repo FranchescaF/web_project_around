@@ -1,3 +1,14 @@
+
+import {
+  showInputError,
+  hideInputError,
+  checkInputValidity,
+  hasInvalidInput,
+  toggleButtonState,
+  setEventListeners,
+  enableValidation
+} from './validate.js';
+
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
@@ -6,7 +17,7 @@ const profileHobbie = document.querySelector(".profile__hobbie");
 const inputName = document.querySelector("#input-name");
 const inputHobbie = document.querySelector("#input-hobbie");
 const formProfile = document.querySelector("#form-profile");
-const closeButton = document.querySelector(".form__close-button-profile");
+const closeButton = document.querySelector(".form__close-button");
 // Variables para agregar tarjetas (cards)
 const cardContainer = document.querySelector(".elements__container");
 const popupAddCard = document.querySelector("#popup-add-card");
@@ -15,7 +26,7 @@ const addButton = document.querySelector(".profile__add-button");
 const inputCardName = document.querySelector("#input-card-name");
 const inputLink = document.querySelector("#input-card-link");
 const closeAddCardButton = document.querySelector(
-  ".form__close-button-addCard"
+  ".form__close-button"
 );
 const createButton = document.querySelector(".form__create-button");
 //Variables para agrandar imagen
@@ -104,6 +115,7 @@ profileButton.addEventListener("click", function () {
 
 // Evento para cerrar el popup de editar perfil
 closeButton.addEventListener("click", function () {
+  console.log('Botón de cerrar presionado');
   closePopup(popupProfile);
 });
 
@@ -147,3 +159,5 @@ formAddCard.addEventListener("submit", function (evt) {
     closePopup(popupAddCard); // Cierra el popup después de agregar la tarjeta
   }
 });
+
+enableValidation();
