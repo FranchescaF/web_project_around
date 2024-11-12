@@ -17,7 +17,7 @@ const inputLink = document.querySelector("#input-card-link");
 const closeAddCardButton = document.querySelector(
   ".form__close-button-addCard"
 );
-const createButton = document.querySelector(".form__create-button");
+const createButton = document.querySelector(".form__submit"); //botón de crear y guardar
 //Variables para agrandar imagen
 const popupCardImage = document.querySelector("#popup-show-card");
 const popupCardClose = document.querySelector(".popup__close-card");
@@ -149,28 +149,60 @@ formAddCard.addEventListener("submit", function (evt) {
   }
 });
 
-popupAddCard.querySelector('.popup__overlay').addEventListener('click', function () {
-  closePopup(popupAddCard);
-});
+//Cerrar los form presionando en el overlay
+popupAddCard
+  .querySelector(".popup__overlay")
+  .addEventListener("click", function () {
+    closePopup(popupAddCard);
+  });
 
-popupProfile.querySelector('.popup__overlay').addEventListener('click', function () {
-  closePopup(popupProfile);
-});
+popupProfile
+  .querySelector(".popup__overlay")
+  .addEventListener("click", function () {
+    closePopup(popupProfile);
+  });
+//No funciona el ovalay de la imagen
+popupCardImage
+  .querySelector(".popup__overlay")
+  .addEventListener("click", function () {
+    closePopup(popupCardImage);
+  });
 
 // Función para cerrar el popup
 function closePopupOnEscape(evt) {
-  if (evt.key === "Escape") {  // Verifica si la tecla presionada es Escape
-    if (popupCardImage ) {
-      closePopup(popupCardImage); // Llama a la función para cerrar el popup
+  if (evt.key === "Escape") {
+    // Verifica si la tecla presionada es Escape
+    if (popupCardImage) {
+      closePopup(popupCardImage); // Llama a la función para cerrar el popup de imagen
     }
     if (popupProfile) {
-      closePopup(popupProfile); 
+      closePopup(popupProfile); // Llama a la función para cerrar el popup de editar perfil
     }
     if (popupAddCard) {
-      closePopup(popupAddCard); 
+      closePopup(popupAddCard); // Llama a la función para cerrar el popup de agregar tarjeta
     }
   }
 }
 
 // Agregar el evento keydown para escuchar la tecla Escape
 document.addEventListener("keydown", closePopupOnEscape);
+
+// Función para enviar formulario al presionar Enter
+function submitOnEnter(evt, form) {
+  if (evt.key === "Enter") {
+    evt.preventDefault(); // Evita el comportamiento predeterminado de la tecla Enter
+    form.requestSubmit(); // Envia el formulario
+  }
+}
+
+// Eventos para enviar el formulario de perfil al presionar Enter en cualquier input
+inputName.addEventListener("keydown", (evt) => submitOnEnter(evt, formProfile));
+inputHobbie.addEventListener("keydown", (evt) =>
+  submitOnEnter(evt, formProfile)
+);
+
+// Eventos para enviar el formulario de agregar tarjeta al presionar Enter en cualquier input
+inputCardName.addEventListener("keydown", (evt) =>
+  submitOnEnter(evt, formAddCard)
+);
+inputLink.addEventListener("keydown", (evt) => submitOnEnter(evt, formAddCard));
