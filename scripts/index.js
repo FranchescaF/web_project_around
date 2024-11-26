@@ -1,3 +1,4 @@
+import Card from "./Card.js";
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
