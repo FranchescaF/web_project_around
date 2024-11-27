@@ -1,82 +1,80 @@
-//Muestra el mensaje de error
-export const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add("form__input_type_error");
+export class FormValidator {
+  constructor(config, formElement) {
+    this._config = config;
+    this._formElement = formElement;
+  }
+  //Muestra el mensaje de error
+  _showInputError(inputElement, errorMessage) {
+    const errorElement = this._formElement.querySelector(
+      `.${inputElement.id}-error`
+    );
+    inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add("form__error_visible");
-  };
-  
-//Oculta el mensaje de erro 
-export const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove("form__input_type_error");
-    errorElement.classList.remove("form__error_visible");
+    errorElement.classList.add(this._config.errorClass);
+  }
+
+  //Oculta el mensaje de error
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(
+      `.${inputElement.id}-error`
+    );
+    inputElement.classList.remove(this._config.inputErrorClass);
+    errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = "";
-  };
+  }
 
-//Revisa si el Input es válido
-export const checkInputValidity = (formElement, inputElement) => {
+  //Revisa si el Input es válido
+  _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      hideInputError(formElement, inputElement);
+      this._hideInputError(inputElement);
     }
-  };
+  }
 
-//verifica si alguno de los campos es inválido
-export const hasInvalidInput = (inputList) => {
+  //verifica si alguno de los campos es inválido
+  _hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
-  };
-
-// Habilita o deshabilita el botón de submit
-export const toggleButtonState = (inputList, buttonElement) => {
-    console.log(hasInvalidInput(inputList));
-    if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add("form__button_disabled");
+  }
+  // Habilita o deshabilita el botón de submit
+  _toggleButtonState(inputList, buttonElement) {
+    if (this._hasInvalidInput(inputList)) {
+      buttonElement.classList.add(this._config.inactiveButtonClass);
+      buttonElement.disabled = true;
     } else {
-      buttonElement.classList.remove("form__button_disabled");
+      buttonElement.classList.remove(this._config.inactiveButtonClass);
+      buttonElement.disabled = false;
     }
-  };
+  }
 
-// Establece los eventos de validación para cada input
-export  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-    const buttonElement = formElement.querySelector(".form__submit");
-  
-    // aquí, para comprobar el estado del botón al principio
-    toggleButtonState(inputList, buttonElement);
-  // Inicializar el estado del botón de submit
+  // Establece los eventos de validación para cada input
+  _setEventListeners() {
+    const inputList = Array.from(
+      this._formElement.querySelectorAll(this._config.inputSelector)
+    );
+    const buttonElement = this._formElement.querySelector(
+      this._config.submitButtonSelector
+    );
+
+    this._toggleButtonState(inputList, buttonElement);
+
     inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", function () {
-        checkInputValidity(formElement, inputElement);
-        // y aquí, para comprobarlo cada vez que haya cambios en la entrada de algún campo
-        toggleButtonState(inputList, buttonElement);
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState(inputList, buttonElement);
       });
     });
-  };
+  }
 
-// Activa la validación para todos los formularios
-export const enableValidation = (config) => {
-    const formList = Array.from(document.querySelectorAll(config.formSelector));
-    formList.forEach((formElement) => {
-      formElement.addEventListener("submit", function (evt) {
-        evt.preventDefault();
-      });
-  
-      const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-      const buttonElement = formElement.querySelector(config.submitButtonSelector);
-  
-      setEventListeners(formElement, inputList, buttonElement, config);
+  // Activa la validación para todos los formularios
+
+  enableValidation() {
+    this._formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
     });
-  };
-  
-  enableValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inactiveButtonClass: "popup__button_disabled",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible"
-  });
+
+    this._setEventListeners();
+  }
+}

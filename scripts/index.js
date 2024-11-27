@@ -1,4 +1,11 @@
-import Card from "./Card.js";
+import { Card } from "../scripts/Card.js";
+import { FormValidator } from "../scripts/FormValidator.js";
+import {
+  openPopup,
+  closePopup,
+  closePopupOnEscape,
+  submitOnEnter,
+} from "../scripts/utils.js";
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
@@ -50,44 +57,32 @@ const initialCards = [
   },
 ];
 
-// Función para abrir cualquier popup
-function openPopup(popup) {
-  popup.classList.add("popup__show");
-}
+// Configuración para la validación de formularios
+const config = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__submit",
+  inactiveButtonClass: "form__submit_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
 
-// Función para cerrar cualquier popup
-function closePopup(popup) {
-  popup.classList.remove("popup__show");
-}
+// Inicialización de la validación de formularios
+const profileFormValidator = new FormValidator(config, formProfile);
+profileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(config, formAddCard);
+addCardFormValidator.enableValidation();
 
 // Función para agregar una tarjeta (card)
-function addCard(link, name) {
-  const cardTemplate = document.querySelector("#template__card").content;
-  const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
-  const cardImage = cardElement.querySelector(".element__photo-link");
-  const cardTitle = cardElement.querySelector(".element__photo-name");
-  const btnDelete = cardElement.querySelector(".element__photo-trash");
-  const btnLike = cardElement.querySelector(".element__photo-like");
-
-  btnLike.addEventListener("click", function () {
-    btnLike.classList.toggle("element__photo-like_active");
-  });
-  btnDelete.addEventListener("click", function () {
-    cardElement.remove();
-  });
-  cardImage.src = link;
-  cardImage.alt = name;
-  cardTitle.textContent = name;
-
-  // Añadir eventos de la tarjeta
-  cardImage.addEventListener("click", function () {
+function createCard(link, name) {
+  const card = new Card(name, link, "#template__card", (link, name) => {
     openPopup(popupCardImage);
     popupCardImage.querySelector(".popup__photo-link").src = link;
     popupCardImage.querySelector(".popup__photo-link").alt = name;
     popupCardImage.querySelector(".popup__photo-name").textContent = name;
   });
-
-  return cardElement;
+  return card.generateCard();
 }
 
 // Añadir las tarjetas iniciales al contenedor
@@ -162,47 +157,30 @@ popupProfile
   .addEventListener("click", function () {
     closePopup(popupProfile);
   });
-//No funciona el ovalay de la imagen
+
 popupCardImage
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
     closePopup(popupCardImage);
   });
 
-// Función para cerrar el popup
-function closePopupOnEscape(evt) {
+// Cerrar los popups al presionar la tecla Escape
+document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
-    // Verifica si la tecla presionada es Escape
-    if (popupCardImage) {
-      closePopup(popupCardImage); // Llama a la función para cerrar el popup de imagen
-    }
-    if (popupProfile) {
-      closePopup(popupProfile); // Llama a la función para cerrar el popup de editar perfil
-    }
-    if (popupAddCard) {
-      closePopup(popupAddCard); // Llama a la función para cerrar el popup de agregar tarjeta
-    }
+    closePopup(popupAddCard);
+    closePopup(popupProfile);
+    closePopup(popupCardImage);
   }
-}
+});
 
 // Agregar el evento keydown para escuchar la tecla Escape
 document.addEventListener("keydown", closePopupOnEscape);
 
-// Función para enviar formulario al presionar Enter
-function submitOnEnter(evt, form) {
-  if (evt.key === "Enter") {
-    evt.preventDefault(); // Evita el comportamiento predeterminado de la tecla Enter
-    form.requestSubmit(); // Envia el formulario
-  }
-}
-
-// Eventos para enviar el formulario de perfil al presionar Enter en cualquier input
+// Enviar formulario al presionar Enter
 inputName.addEventListener("keydown", (evt) => submitOnEnter(evt, formProfile));
 inputHobbie.addEventListener("keydown", (evt) =>
   submitOnEnter(evt, formProfile)
 );
-
-// Eventos para enviar el formulario de agregar tarjeta al presionar Enter en cualquier input
 inputCardName.addEventListener("keydown", (evt) =>
   submitOnEnter(evt, formAddCard)
 );

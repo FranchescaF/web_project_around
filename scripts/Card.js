@@ -1,19 +1,47 @@
 export class Card {
-  //Constructor(Metodo) que tiene parametros para construir instacias de la clase
-  constructor(name, link) {
-    //this:hace referencia al objeto que necesita la propiedad
-    this._name = name;
+  constructor(name, link, templateSelector, handleCardClick) {
+    this._name = name; //con el _ es que este encapsulado, otra persona no puede modificarlo
     this._link = link;
-    this._template = template
-      .cloneNode(true)
-      .textContent.querySelector(".element");
-    this._likes = 0;
-    this._likesButton = template.querySelector(".element__photo-like");
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
-  handleLike() {
-    this._likesButton.classList.add(".element__photo-like_active");
+
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._templateSelector)
+      .content.querySelector(".element")
+      .cloneNode(true);
+
+    return cardElement;
   }
-  handleDelete() {
-    this.template.remove();
+
+  _setEventListeners(cardElement) {
+    const btnLike = cardElement.querySelector(".element__photo-like");
+    const btnDelete = cardElement.querySelector(".element__photo-trash");
+    const cardImage = cardElement.querySelector(".element__photo-link");
+
+    btnLike.addEventListener("click", () => {
+      btnLike.classList.toggle("element__photo-like_active");
+    });
+
+    btnDelete.addEventListener("click", () => {
+      cardElement.remove();
+    });
+
+    cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._link, this._name);
+    });
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector(".element__photo-link").src = this._link;
+    this._element.querySelector(".element__photo-link").alt = this._name;
+    this._element.querySelector(".element__photo-name").textContent =
+      this._name;
+
+    this._setEventListeners(this._element);
+
+    return this._element;
   }
 }
