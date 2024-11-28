@@ -87,7 +87,7 @@ function createCard(link, name) {
 
 // Añadir las tarjetas iniciales al contenedor
 initialCards.forEach(function (element) {
-  const newCard = addCard(element.link, element.name);
+  const newCard = createCard(element.link, element.name);
   cardContainer.prepend(newCard);
 });
 
@@ -161,6 +161,7 @@ popupProfile
 popupCardImage
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
+    console.log("hola");
     closePopup(popupCardImage);
   });
 
