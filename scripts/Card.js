@@ -15,6 +15,7 @@ export class Card {
     return cardElement;
   }
 
+  // establece los listeners de eventos para los elementos de la tarjeta.
   _setEventListeners(cardElement) {
     const btnLike = cardElement.querySelector(".element__photo-like");
     const btnDelete = cardElement.querySelector(".element__photo-trash");
@@ -33,7 +34,9 @@ export class Card {
     });
   }
 
+  //genera y retorna la tarjeta.
   generateCard() {
+    //Llama al método _getTemplate para obtener el elemento de la tarjeta
     this._element = this._getTemplate();
     this._element.querySelector(".element__photo-link").src = this._link;
     this._element.querySelector(".element__photo-link").alt = this._name;

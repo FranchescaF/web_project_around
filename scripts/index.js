@@ -135,7 +135,7 @@ formAddCard.addEventListener("submit", function (evt) {
   const link = inputLink.value;
 
   if (name && link) {
-    const newCard = addCard(link, name);
+    const newCard = createCard(link, name);
     cardContainer.prepend(newCard); // Añade la nueva tarjeta al contenedor
 
     inputCardName.value = ""; // Resetea el campo de nombre
@@ -174,9 +174,6 @@ document.addEventListener("keydown", (evt) => {
   }
 });
 
-// Agregar el evento keydown para escuchar la tecla Escape
-document.addEventListener("keydown", closePopupOnEscape);
-
 // Enviar formulario al presionar Enter
 inputName.addEventListener("keydown", (evt) => submitOnEnter(evt, formProfile));
 inputHobbie.addEventListener("keydown", (evt) =>
@@ -186,3 +183,7 @@ inputCardName.addEventListener("keydown", (evt) =>
   submitOnEnter(evt, formAddCard)
 );
 inputLink.addEventListener("keydown", (evt) => submitOnEnter(evt, formAddCard));
+
+//cosas por preguntar
+//no se me desabilita el boton de guardar y subir
+//no funciona el overlay de la imagen

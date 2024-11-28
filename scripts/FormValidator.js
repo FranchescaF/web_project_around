@@ -3,7 +3,7 @@ export class FormValidator {
     this._config = config;
     this._formElement = formElement;
   }
-  //Muestra el mensaje de error
+  //muestra un mensaje de error para un campo de entrada inválido.
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.id}-error`
@@ -13,7 +13,7 @@ export class FormValidator {
     errorElement.classList.add(this._config.errorClass);
   }
 
-  //Oculta el mensaje de error
+  //oculta el mensaje de error para un campo de entrada válido.
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.id}-error`

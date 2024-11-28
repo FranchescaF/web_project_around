@@ -1,12 +1,14 @@
+// Función para abrir la imagen
 export function openPopup(popup) {
   popup.classList.add("popup__show");
 }
 
+// Función para cerrar la imagen
 export function closePopup(popup) {
   popup.classList.remove("popup__show");
 }
 
-// Función para cerrar el popup
+// Función para Cerrar el Popup con la Tecla Escape
 export function closePopupOnEscape(evt) {
   if (evt.key === "Escape") {
     // Verifica si la tecla presionada es Escape
