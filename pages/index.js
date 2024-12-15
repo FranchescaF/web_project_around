@@ -1,4 +1,9 @@
 import { Card } from "../scripts/Card.js";
+import { Popup } from "../scripts/Popup.js";
+import { PopupWithForm } from "../scripts/PopupWithForm.js";
+import { PopupWithImage } from "../scripts/PopupWithImage.js";
+import { Section } from "../scripts/Section.js";
+import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import {
   openPopup,
@@ -161,7 +166,6 @@ popupProfile
 popupCardImage
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    console.log("hola");
     closePopup(popupCardImage);
   });
 
