@@ -5,12 +5,6 @@ import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { Section } from "../scripts/Section.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
-import {
-  openPopup,
-  closePopup,
-  closePopupOnEscape,
-  submitOnEnter,
-} from "../scripts/utils.js";
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
@@ -191,3 +185,18 @@ inputLink.addEventListener("keydown", (evt) => submitOnEnter(evt, formAddCard));
 //cosas por preguntar
 //no se me desabilita el boton de guardar y subir
 //no funciona el overlay de la imagen
+
+// Configuración para la sección de tarjetas
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item.link, item.name);
+      cardSection.addItem(card);
+    },
+  },
+  ".elements__container"
+);
+
+// Renderizar los elementos iniciales
+cardSection.renderItems();
