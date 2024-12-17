@@ -1,6 +1,5 @@
 import { Card } from "../scripts/Card.js";
-import { Popup } from "../scripts/Popup.js";
-import { PopupWithForm } from "../scripts/PopupWithForm.js";
+import { PopupWithForm } from "../scripts/PopupWithForms.js";
 import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { Section } from "../scripts/Section.js";
 import { UserInfo } from "../scripts/UserInfo.js";
@@ -66,6 +65,9 @@ const config = {
   errorClass: "form__input-error_active",
 };
 
+//instancias de clase
+const profilePopup = new PopupWithForm("#popup-profile", () => {});
+
 // Inicialización de la validación de formularios
 const profileFormValidator = new FormValidator(config, formProfile);
 profileFormValidator.enableValidation();
@@ -76,7 +78,7 @@ addCardFormValidator.enableValidation();
 // Función para agregar una tarjeta (card)
 function createCard(link, name) {
   const card = new Card(name, link, "#template__card", (link, name) => {
-    openPopup(popupCardImage);
+    //openPopup(popupCardImage);
     popupCardImage.querySelector(".popup__photo-link").src = link;
     popupCardImage.querySelector(".popup__photo-link").alt = name;
     popupCardImage.querySelector(".popup__photo-name").textContent = name;
@@ -94,12 +96,13 @@ initialCards.forEach(function (element) {
 profileButton.addEventListener("click", function () {
   inputName.textContent = profileName.value;
   inputHobbie.textContent = profileHobbie.value;
-  openPopup(popupProfile);
+  //openPopup(popupProfile);
+  profilePopup.open();
 });
 
 // Función para cerrar un popup
 function closeAnyPopup(popup) {
-  closePopup(popup); // Se puede reutilizar en todos los popups
+  //closePopup(popup); // Se puede reutilizar en todos los popups
 }
 
 // Usar en lugar de los listeners directos
@@ -118,12 +121,12 @@ formProfile.addEventListener("submit", function (evt) {
   evt.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
   profileName.textContent = inputName.value; // Actualiza el nombre del perfil
   profileHobbie.textContent = inputHobbie.value; // Actualiza el hobbie del perfil
-  closePopup(popupProfile); // Cierra el popup después de actualizar el perfil
+  //closePopup(popupProfile); // Cierra el popup después de actualizar el perfil
 });
 
 // Evento para abrir el popup de agregar tarjeta
 addButton.addEventListener("click", function () {
-  openPopup(popupAddCard);
+  //openPopup(popupAddCard);
 });
 
 // Evento para manejar el envío del formulario de agregar tarjeta
@@ -140,7 +143,7 @@ formAddCard.addEventListener("submit", function (evt) {
     inputCardName.value = ""; // Resetea el campo de nombre
     inputLink.value = ""; // Resetea el campo de enlace
 
-    closePopup(popupAddCard); // Cierra el popup después de agregar la tarjeta
+    //closePopup(popupAddCard); // Cierra el popup después de agregar la tarjeta
   }
 });
 
@@ -148,39 +151,43 @@ formAddCard.addEventListener("submit", function (evt) {
 popupAddCard
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    closePopup(popupAddCard);
+    //closePopup(popupAddCard);
   });
 
 popupProfile
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    closePopup(popupProfile);
+    //closePopup(popupProfile);
   });
 
 popupCardImage
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    closePopup(popupCardImage);
+    //closePopup(popupCardImage);
   });
 
 // Cerrar los popups al presionar la tecla Escape
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
-    closePopup(popupAddCard);
-    closePopup(popupProfile);
-    closePopup(popupCardImage);
+    //closePopup(popupAddCard);
+    //closePopup(popupProfile);
+    //closePopup(popupCardImage);
   }
 });
 
 // Enviar formulario al presionar Enter
-inputName.addEventListener("keydown", (evt) => submitOnEnter(evt, formProfile));
-inputHobbie.addEventListener("keydown", (evt) =>
-  submitOnEnter(evt, formProfile)
-);
-inputCardName.addEventListener("keydown", (evt) =>
-  submitOnEnter(evt, formAddCard)
-);
-inputLink.addEventListener("keydown", (evt) => submitOnEnter(evt, formAddCard));
+inputName.addEventListener("keydown", (evt) => {
+  //submitOnEnter(evt, formProfile);
+});
+inputHobbie.addEventListener("keydown", (evt) => {
+  //submitOnEnter(evt, formProfile)
+});
+inputCardName.addEventListener("keydown", (evt) => {
+  //submitOnEnter(evt, formAddCard)
+});
+inputLink.addEventListener("keydown", (evt) => {
+  //submitOnEnter(evt, formAddCard)
+});
 
 //cosas por preguntar
 //no se me desabilita el boton de guardar y subir
