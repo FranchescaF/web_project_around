@@ -1,8 +1,10 @@
-# Tripleten web_project_around Parte-1
+# Tripleten web_project_around
+
+## Refactorización con POO
 
 ## 1. Resumen del proyecto
 
-**WEB PROJECT AROUND** es una pagina web interactiva como Instagram, donde el usuario va poder dar like y dislike a una foto, va poder agregar fotos, va poder cambiar el nombre de usuario y la foto de perfil. En esta primera parte, solo se hizo funcional la parte de la edicion del nombre de perfil y el hobbie o informacion extra de la persona que desee interactuar con la pagina.
+**WEB PROJECT AROUND** es una pagina web interactiva como Instagram, donde el usuario va poder dar like y dislike a una foto, va poder agregar fotos, va poder cambiar el nombre de usuario. Se hizo funcional y se valido los formularios de agregar tarjeta y modificar perfil, esta refactorizado utilizando los principios de POO(Programación Orientado a Objetos) siguiendo la relación de clases mediante acoplamiento débil y se ha dividido en diferentes carpetas de js para mayor comprensión.
 
 ### Prototipos de Alta Fidelidad:
 
