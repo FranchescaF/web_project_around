@@ -29,6 +29,5 @@ export class PopupWithForm extends Popup {
   // Método público para cerrar el popup y reiniciar el formulario
   close() {
     super.close();
-    this._form.reset();
   }
 }

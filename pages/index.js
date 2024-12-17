@@ -65,8 +65,18 @@ const config = {
   errorClass: "form__input-error_active",
 };
 
-//instancias de clase
-const profilePopup = new PopupWithForm("#popup-profile", () => {});
+//Instancias de clase
+const profilePopup = new PopupWithForm("#popup-profile", (data) => {
+  profileName.textContent = data.name;
+  profileHobbie.textContent = data.hobbie;
+  profilePopup.close();
+});
+const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
+  const newCard = createCard(data.link, data.name);
+  cardContainer.prepend(newCard);
+  addCardPopup.close();
+});
+const showCardPopup = new PopupWithImage("#popup-show-card", () => {});
 
 // Inicialización de la validación de formularios
 const profileFormValidator = new FormValidator(config, formProfile);
@@ -78,7 +88,7 @@ addCardFormValidator.enableValidation();
 // Función para agregar una tarjeta (card)
 function createCard(link, name) {
   const card = new Card(name, link, "#template__card", (link, name) => {
-    //openPopup(popupCardImage);
+    showCardPopup.open();
     popupCardImage.querySelector(".popup__photo-link").src = link;
     popupCardImage.querySelector(".popup__photo-link").alt = name;
     popupCardImage.querySelector(".popup__photo-name").textContent = name;
@@ -96,37 +106,32 @@ initialCards.forEach(function (element) {
 profileButton.addEventListener("click", function () {
   inputName.textContent = profileName.value;
   inputHobbie.textContent = profileHobbie.value;
-  //openPopup(popupProfile);
   profilePopup.open();
 });
 
-// Función para cerrar un popup
-function closeAnyPopup(popup) {
-  //closePopup(popup); // Se puede reutilizar en todos los popups
+// Función para cerrar todos los popups
+function closeAnyPopup() {
+  profilePopup.close(); // Cierra el popup de perfil
+  addCardPopup.close(); // Cierra el popup de agregar tarjeta
+  showCardPopup.close(); // Cierra el popup de mostrar tarjeta
 }
 
 // Usar en lugar de los listeners directos
-closeButton.addEventListener("click", function () {
-  closeAnyPopup(popupProfile);
-});
-closeAddCardButton.addEventListener("click", function () {
-  closeAnyPopup(popupAddCard);
-});
-popupCardClose.addEventListener("click", function () {
-  closeAnyPopup(popupCardImage);
-});
+closeButton.addEventListener("click", closeAnyPopup);
+closeAddCardButton.addEventListener("click", closeAnyPopup);
+popupCardClose.addEventListener("click", closeAnyPopup);
 
 // Evento para manejar el envío del formulario de perfil
 formProfile.addEventListener("submit", function (evt) {
   evt.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
   profileName.textContent = inputName.value; // Actualiza el nombre del perfil
   profileHobbie.textContent = inputHobbie.value; // Actualiza el hobbie del perfil
-  //closePopup(popupProfile); // Cierra el popup después de actualizar el perfil
+  profilePopup.close(); // Cierra el popup después de actualizar el perfil
 });
 
 // Evento para abrir el popup de agregar tarjeta
 addButton.addEventListener("click", function () {
-  //openPopup(popupAddCard);
+  addCardPopup.open();
 });
 
 // Evento para manejar el envío del formulario de agregar tarjeta
@@ -143,7 +148,7 @@ formAddCard.addEventListener("submit", function (evt) {
     inputCardName.value = ""; // Resetea el campo de nombre
     inputLink.value = ""; // Resetea el campo de enlace
 
-    //closePopup(popupAddCard); // Cierra el popup después de agregar la tarjeta
+    addCardPopup.close(); // Cierra el popup después de agregar la tarjeta
   }
 });
 
@@ -151,59 +156,22 @@ formAddCard.addEventListener("submit", function (evt) {
 popupAddCard
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    //closePopup(popupAddCard);
+    addCardPopup.close();
   });
 
 popupProfile
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    //closePopup(popupProfile);
+    profilePopup.close();
   });
 
 popupCardImage
   .querySelector(".popup__overlay")
   .addEventListener("click", function () {
-    //closePopup(popupCardImage);
+    showCardPopup.close();
   });
 
-// Cerrar los popups al presionar la tecla Escape
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    //closePopup(popupAddCard);
-    //closePopup(popupProfile);
-    //closePopup(popupCardImage);
-  }
-});
-
-// Enviar formulario al presionar Enter
-inputName.addEventListener("keydown", (evt) => {
-  //submitOnEnter(evt, formProfile);
-});
-inputHobbie.addEventListener("keydown", (evt) => {
-  //submitOnEnter(evt, formProfile)
-});
-inputCardName.addEventListener("keydown", (evt) => {
-  //submitOnEnter(evt, formAddCard)
-});
-inputLink.addEventListener("keydown", (evt) => {
-  //submitOnEnter(evt, formAddCard)
-});
-
 //cosas por preguntar
-//no se me desabilita el boton de guardar y subir
+//no se me desabilita el boton de guardar y crear
 //no funciona el overlay de la imagen
-
-// Configuración para la sección de tarjetas
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item.link, item.name);
-      cardSection.addItem(card);
-    },
-  },
-  ".elements__container"
-);
-
-// Renderizar los elementos iniciales
-cardSection.renderItems();
+// el form validator no funciona muy bien osea no me sale nada debajo que me diga falta completar
