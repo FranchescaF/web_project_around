@@ -30,28 +30,28 @@ const popupCardClose = document.querySelector(".popup__close-card");
 // Tarjetas iniciales
 const initialCards = [
   {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+    name: "Picos de Huandoy",
+    link: "https://elements-resized.envatousercontent.com/envato-shoebox/1d0d/3499-b0c3-48b3-a9db-3697148f0143/IMG_3393%20copia.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=45b641f517fef78319b8f45ccaa69bc7f4c9fb61a634979167f20731d90856bc",
   },
   {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+    name: "Pampa peruana",
+    link: "https://elements-resized.envatousercontent.com/envato-shoebox/fc19/36a4-13f9-4fdf-b70b-7d68e876999d/Peruvian%20pampa_170827210800_0.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=1f9f5d8f283f143be32135e7785b02bfbe2889ac6b73558209be432a2af23363",
   },
   {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+    name: "Centro de Lima",
+    link: "https://elements-resized.envatousercontent.com/envato-shoebox/twenty20/production/uploads/items/904e5d38-9e99-4bf2-b24c-ed9d388d2564/source?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=ab1fe41718917229891662cf077db6c5febff7491d0160999b50b62906138c56",
   },
   {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    name: "Costa Verde",
+    link: "https://elements-resized.envatousercontent.com/envato-shoebox/1e4e/07df-4173-4bdb-ba99-8e2535f98cdd/bdydQ2BTdEmmneGVEfH9mc5z9QidKaCN9n6kWznj.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=d82c9da014f50dc1e5b4e9209faa74328cb7730d9f6cbc54da9bbc628807814a",
   },
   {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+    name: "Ruinas de Pisac",
+    link: "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/98/d3/6a/9f/74/v1_E10/E10ZSPU.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=2e4888d53104665b22d77c3710a2c6eb0da2e124d6dee5b5336475c196b2bb2d",
   },
   {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    name: "Machu Picchu",
+    link: "https://elements-resized.envatousercontent.com/envato-shoebox/ffcb/2b5b-86ce-4eab-8d62-8dd7d60a419b/machupicchu-IMG_2268-Edit-new.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=474c57c643bbe5bf6298c1ef709fb62506f7ed421dadf577870b011a15ea6b7d",
   },
 ];
 
