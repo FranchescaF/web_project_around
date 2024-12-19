@@ -100,10 +100,17 @@ function createCard(link, name) {
 }
 
 // Añadir las tarjetas iniciales al contenedor
-initialCards.forEach(function (element) {
-  const newCard = createCard(element.link, element.name);
-  cardContainer.prepend(newCard);
-});
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const newCard = createCard(item.link, item.name);
+      cardContainer.prepend(newCard);
+    },
+  },
+  ".elements__container"
+);
+section.renderItems();
 
 // Evento para abrir el popup de editar perfil
 profileButton.addEventListener("click", function () {
