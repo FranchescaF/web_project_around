@@ -107,8 +107,6 @@ initialCards.forEach(function (element) {
 
 // Evento para abrir el popup de editar perfil
 profileButton.addEventListener("click", function () {
-  //inputName.textContent = profileName.value;
-  //inputHobbie.textContent = profileHobbie.value;
   const data = userInfo.getUserInfo();
   inputName.value = data.name;
   inputHobbie.value = data.hobbie;
@@ -176,6 +174,3 @@ popupCardImage
   .addEventListener("click", function () {
     showCardPopup.close();
   });
-
-//cosas por preguntar
-//no se utiliza el user Info en index.js pero si esta importado
