@@ -67,8 +67,7 @@ const config = {
 
 //Instancias de clase
 const profilePopup = new PopupWithForm("#popup-profile", (data) => {
-  profileName.textContent = data.name;
-  profileHobbie.textContent = data.hobbie;
+  userInfo.setUserInfo({ name: data.name, hobbie: data.hobbie });
   profilePopup.close();
 });
 const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
@@ -77,6 +76,10 @@ const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
   addCardPopup.close();
 });
 const showCardPopup = new PopupWithImage("#popup-show-card", () => {});
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  hobbieSelector: ".profile__hobbie",
+});
 
 // Inicialización de la validación de formularios
 const profileFormValidator = new FormValidator(config, formProfile);
@@ -104,8 +107,11 @@ initialCards.forEach(function (element) {
 
 // Evento para abrir el popup de editar perfil
 profileButton.addEventListener("click", function () {
-  inputName.textContent = profileName.value;
-  inputHobbie.textContent = profileHobbie.value;
+  //inputName.textContent = profileName.value;
+  //inputHobbie.textContent = profileHobbie.value;
+  const data = userInfo.getUserInfo();
+  inputName.value = data.name;
+  inputHobbie.value = data.hobbie;
   profilePopup.open();
 });
 
@@ -172,6 +178,4 @@ popupCardImage
   });
 
 //cosas por preguntar
-//no se me desabilita el boton de guardar y crear
-//no funciona el overlay de la imagen
-// el form validator no funciona muy bien osea no me sale nada debajo que me diga falta completar
+//no se utiliza el user Info en index.js pero si esta importado
