@@ -5,25 +5,42 @@ class Api {
     this.headers = options.headers;
   }
 
-  getInitialCards() {
+  getUserInfo() {
     return fetch(this.baseUrl + "/users/me", {
       headers: {
         authorization: "a0cc38d0-c3cd-4ee6-b868-90b1ee1b784d",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((result) => {
         console.log(result);
+        return result;
       });
   }
 
+  getInitialCards() {
+    return fetch(this.baseUrl + "/cards", {
+      headers: {
+        authorization: "a0cc38d0-c3cd-4ee6-b868-90b1ee1b784d",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        console.log(result);
+        return result;
+      });
+  }
   // otros métodos para trabajar con la API
 }
 
-const api = new Api({
+export const api = new Api({
   baseUrl: "https://around-api.es.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "a0cc38d0-c3cd-4ee6-b868-90b1ee1b784d",
     "Content-Type": "application/json",
   },
 });

@@ -4,6 +4,24 @@ import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { Section } from "../scripts/Section.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
+import { api } from "../utils/api.js";
+
+api.getUserInfo();
+
+api.getInitialCards().then((initialCards) => {
+  const section = new Section(
+    {
+      items: initialCards,
+      renderer: (item) => {
+        const newCard = createCard(item.link, item.name);
+        cardContainer.prepend(newCard);
+      },
+    },
+    ".elements__container"
+  );
+  section.renderItems();
+});
+
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
