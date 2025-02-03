@@ -4,7 +4,9 @@
   "description": "Educatio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Franchesca Fatima Zelaya Contreras",
   "license": "ISC",
@@ -12,8 +14,6 @@
     "jquery": "^3.7.1"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "gh-pages": "^6.3.0"
   }
 }
