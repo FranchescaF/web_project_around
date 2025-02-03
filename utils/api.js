@@ -4,12 +4,15 @@ class Api {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
   }
-  // Obtener información del usuario
+  // 1. Cargar la información del usuario desde el servidor
   getUserInfo() {
     return fetch(this.baseUrl + "/users/me", {
       headers: this.headers,
     })
       .then((res) => {
+        if (!res.ok) {
+          return Promise.reject(`Error: ${res.status}`);
+        }
         return res.json();
       })
       .then((result) => {
@@ -17,30 +20,30 @@ class Api {
         return result;
       });
   }
-  // Obtener las tarjetas iniciales
+
+  // 2. Cargar las tarjetas desde el servidor(Obtener tarjetas iniciales)
   getInitialCards() {
     return fetch(this.baseUrl + "/cards", {
       headers: this.headers,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject(`Error: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((result) => {
         console.log(result);
         return result;
       });
   }
 
-  // Editar el perfil del usuario
-  updateUserProfile() {
-    return fetch(this.baseUrl + "/me", {
+  // 3. Editar el perfil
+  updateUserProfile(name, about) {
+    return fetch(this.baseUrl + "/users/me", {
       method: "PATCH",
-      headers: {
-        authorization: this.headers,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        about: "Física y Química",
-      }),
+      headers: this.headers,
+      body: JSON.stringify({ name, about }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -53,19 +56,14 @@ class Api {
         return result;
       });
   }
-}
-  //Agregar una nueva tarjeta
+
+  //4. Agregar una nueva tarjeta
   addNewCard(name, link) {
     return fetch(this.baseUrl + "/cards", {
       method: "POST",
-      headers: {
-        authorization: this.headers,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
+      headers: this.headers,
+
+      body: JSON.stringify({ name, link }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -74,6 +72,19 @@ class Api {
         return res.json();
       })
       .catch((err) => console.error("Error al agregar la tarjeta:", err));
+  }
+
+  //5. Alternar "me gusta" en una tarjeta
+  toggleLike(cardId, isLiked) {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this.headers,
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+      return res.json();
+    });
   }
 }
 
