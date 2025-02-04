@@ -23,15 +23,23 @@
         />
       </header>
       <section class="profile">
-        <img
-          class="profile__avatar"
-          src="./images/Avatar.jpg"
-          alt="Avatar de Jacques Cousteau"
-        />
+        <div class="profile__avatar-container">
+          <img
+            class="profile__avatar"
+            src="./images/Avatar.jpg"
+            alt="Avatar de Jacques Cousteau"
+          />
+          <button class="profile__edit-avatar" aria-label="Editar Avatar">
+            <img
+              src="./images/edit_avatar.png"
+              alt="Botón para editar Avatar"
+            />
+          </button>
+        </div>
         <div class="profile__content">
           <div class="profile__info">
-            <p class="profile__name">Fatima Zelaya</p>
-            <p class="profile__hobbie">Web Developer</p>
+            <p class="profile__name"></p>
+            <p class="profile__hobbie"></p>
           </div>
           <button class="profile__edit-button" aria-label="Editar perfil">
             <img
@@ -147,6 +155,44 @@
         />
         <span class="input-error input-hobbie-error"></span>
         <button type="submit" class="form__submit" disabled>Guardar</button>
+      </form>
+    </div>
+    <!-- Ventana emergente de eliminar-->
+    <div class="popup" id="popup-delete">
+      <div class="form popup__overlay"></div>
+      <form class="form popup__form" id="form-delete" novalidate>
+        <img
+          class="form__close-button form__close-button-profile"
+          src="images/Close Icon.png"
+          alt="boton para cerrar"
+          id="close-form"
+        />
+        <p class="form__title">¿Estás seguro/a?</p>
+        <span class="input-error input-hobbie-error"></span>
+        <button type="reset" class="form__delete" disabled>Si</button>
+      </form>
+    </div>
+    <!-- Editar foto de avatar-->
+    <div class="popup" id="popup-avatar">
+      <div class="popup__overlay"></div>
+      <form class="form popup__form" id="form-avatar" novalidate>
+        <img
+          class="form__close-button"
+          src="images/Close Icon.png"
+          alt="Cerrar"
+          id="close-form"
+        />
+        <h2 class="form__title">Cambiar foto de perfil</h2>
+        <input
+          type="url"
+          class="form__input"
+          id="input-avatar-url"
+          name="avatar"
+          placeholder="URL de la nueva foto"
+          required
+        />
+        <span class="input-error input-avatar-error"></span>
+        <button type="submit" class="form__submit">Guardar</button>
       </form>
     </div>
     <script src="./pages/index.js" type="module"></script>
