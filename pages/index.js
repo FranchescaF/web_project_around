@@ -6,7 +6,9 @@ import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import { api } from "../utils/api.js";
 
-api.getUserInfo();
+api.getUserInfo().then((UserInfo) => {
+  console.log(UserInfo);
+});
 
 api.getInitialCards().then((initialCards) => {
   const section = new Section(
@@ -46,7 +48,7 @@ const createButton = document.querySelector(".form__submit"); //botón de crear 
 const popupCardImage = document.querySelector("#popup-show-card");
 const popupCardClose = document.querySelector(".popup__close-card");
 // Tarjetas iniciales
-const initialCards = [
+/* const initialCards = [
   {
     name: "Picos de Huandoy",
     link: "https://elements-resized.envatousercontent.com/envato-shoebox/1d0d/3499-b0c3-48b3-a9db-3697148f0143/IMG_3393%20copia.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=45b641f517fef78319b8f45ccaa69bc7f4c9fb61a634979167f20731d90856bc",
@@ -71,7 +73,7 @@ const initialCards = [
     name: "Machu Picchu",
     link: "https://elements-resized.envatousercontent.com/envato-shoebox/ffcb/2b5b-86ce-4eab-8d62-8dd7d60a419b/machupicchu-IMG_2268-Edit-new.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=474c57c643bbe5bf6298c1ef709fb62506f7ed421dadf577870b011a15ea6b7d",
   },
-];
+]; */
 
 // Configuración para la validación de formularios
 const config = {
@@ -88,6 +90,7 @@ const profilePopup = new PopupWithForm("#popup-profile", (data) => {
   userInfo.setUserInfo({ name: data.name, hobbie: data.hobbie });
   profilePopup.close();
 });
+//crear un nueva tarjeta
 const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
   const newCard = createCard(data.link, data.name);
   cardContainer.prepend(newCard);
@@ -118,7 +121,7 @@ function createCard(link, name) {
 }
 
 // Añadir las tarjetas iniciales al contenedor
-const section = new Section(
+/* const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
@@ -128,7 +131,7 @@ const section = new Section(
   },
   ".elements__container"
 );
-section.renderItems();
+section.renderItems(); */
 
 // Evento para abrir el popup de editar perfil
 profileButton.addEventListener("click", function () {
