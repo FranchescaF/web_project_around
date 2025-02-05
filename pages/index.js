@@ -6,23 +6,38 @@ import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import { api } from "../utils/api.js";
 
-api.getUserInfo().then((UserInfo) => {
-  console.log(UserInfo);
-});
+// Obtener información del usuario
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({
+      name: userData.name,
+      hobbie: userData.about,
+    });
+  })
+  .catch((err) => {
+    console.error("Error al cargar los datos del usuario:", err);
+  });
 
-api.getInitialCards().then((initialCards) => {
-  const section = new Section(
-    {
-      items: initialCards,
-      renderer: (item) => {
-        const newCard = createCard(item.link, item.name);
-        cardContainer.prepend(newCard);
+//Llamando a las tarjetas
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    const section = new Section(
+      {
+        items: initialCards,
+        renderer: (item) => {
+          const newCard = createCard(item.link, item.name);
+          cardContainer.prepend(newCard);
+        },
       },
-    },
-    ".elements__container"
-  );
-  section.renderItems();
-});
+      ".elements__container"
+    );
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error("Error al cargar las tarjetas iniciales:", err);
+  });
 
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
@@ -47,6 +62,7 @@ const createButton = document.querySelector(".form__submit"); //botón de crear 
 //Variables para agrandar imagen
 const popupCardImage = document.querySelector("#popup-show-card");
 const popupCardClose = document.querySelector(".popup__close-card");
+<<<<<<< HEAD
 // Tarjetas iniciales
 /* const initialCards = [
   {
@@ -74,6 +90,8 @@ const popupCardClose = document.querySelector(".popup__close-card");
     link: "https://elements-resized.envatousercontent.com/envato-shoebox/ffcb/2b5b-86ce-4eab-8d62-8dd7d60a419b/machupicchu-IMG_2268-Edit-new.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=474c57c643bbe5bf6298c1ef709fb62506f7ed421dadf577870b011a15ea6b7d",
   },
 ]; */
+=======
+>>>>>>> a028b6ba5fa2bf24fb1ae71af291f87973718294
 
 // Configuración para la validación de formularios
 const config = {
@@ -120,6 +138,7 @@ function createCard(link, name) {
   return card.generateCard();
 }
 
+<<<<<<< HEAD
 // Añadir las tarjetas iniciales al contenedor
 /* const section = new Section(
   {
@@ -133,6 +152,8 @@ function createCard(link, name) {
 );
 section.renderItems(); */
 
+=======
+>>>>>>> a028b6ba5fa2bf24fb1ae71af291f87973718294
 // Evento para abrir el popup de editar perfil
 profileButton.addEventListener("click", function () {
   const data = userInfo.getUserInfo();
