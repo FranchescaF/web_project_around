@@ -31,3 +31,4 @@ export class PopupWithForm extends Popup {
     super.close();
   }
 }
+//poner lo del avatar aca, poner la instancvia aca

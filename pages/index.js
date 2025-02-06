@@ -10,14 +10,10 @@ import { api } from "../utils/api.js";
 api
   .getUserInfo()
   .then((userData) => {
-    userInfo.setUserInfo({
-      name: userData.name,
-      hobbie: userData.about,
-    });
+    profileName.textContent = userData.name; // Actualizar nombre en la UI
+    profileHobbie.textContent = userData.about; // Actualizar ocupación en la UI
   })
-  .catch((err) => {
-    console.error("Error al cargar los datos del usuario:", err);
-  });
+  .catch((err) => console.error("Error al obtener datos del usuario:", err));
 
 //Llamando a las tarjetas
 api
@@ -27,18 +23,16 @@ api
       {
         items: initialCards,
         renderer: (item) => {
-          const newCard = createCard(item.link, item.name);
-          cardContainer.prepend(newCard);
+          const newCard = createCard(item.link, item.name); // Crear tarjeta
+          cardContainer.prepend(newCard); // Agregar la tarjeta al contenedor
         },
       },
       ".elements__container"
     );
-    section.renderItems();
+    section.renderItems(); // Renderizar todas las tarjetas
   })
-  .catch((err) => {
-    console.error("Error al cargar las tarjetas iniciales:", err);
-  });
-
+  .catch((err) => console.error("Error al cargar tarjetas:", err));
+//poner 3 instancias de clase
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
@@ -62,36 +56,6 @@ const createButton = document.querySelector(".form__submit"); //botón de crear 
 //Variables para agrandar imagen
 const popupCardImage = document.querySelector("#popup-show-card");
 const popupCardClose = document.querySelector(".popup__close-card");
-<<<<<<< HEAD
-// Tarjetas iniciales
-/* const initialCards = [
-  {
-    name: "Picos de Huandoy",
-    link: "https://elements-resized.envatousercontent.com/envato-shoebox/1d0d/3499-b0c3-48b3-a9db-3697148f0143/IMG_3393%20copia.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=45b641f517fef78319b8f45ccaa69bc7f4c9fb61a634979167f20731d90856bc",
-  },
-  {
-    name: "Pampa peruana",
-    link: "https://elements-resized.envatousercontent.com/envato-shoebox/fc19/36a4-13f9-4fdf-b70b-7d68e876999d/Peruvian%20pampa_170827210800_0.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=1f9f5d8f283f143be32135e7785b02bfbe2889ac6b73558209be432a2af23363",
-  },
-  {
-    name: "Centro de Lima",
-    link: "https://elements-resized.envatousercontent.com/envato-shoebox/twenty20/production/uploads/items/904e5d38-9e99-4bf2-b24c-ed9d388d2564/source?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=ab1fe41718917229891662cf077db6c5febff7491d0160999b50b62906138c56",
-  },
-  {
-    name: "Costa Verde",
-    link: "https://elements-resized.envatousercontent.com/envato-shoebox/1e4e/07df-4173-4bdb-ba99-8e2535f98cdd/bdydQ2BTdEmmneGVEfH9mc5z9QidKaCN9n6kWznj.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=d82c9da014f50dc1e5b4e9209faa74328cb7730d9f6cbc54da9bbc628807814a",
-  },
-  {
-    name: "Ruinas de Pisac",
-    link: "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/98/d3/6a/9f/74/v1_E10/E10ZSPU.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=2e4888d53104665b22d77c3710a2c6eb0da2e124d6dee5b5336475c196b2bb2d",
-  },
-  {
-    name: "Machu Picchu",
-    link: "https://elements-resized.envatousercontent.com/envato-shoebox/ffcb/2b5b-86ce-4eab-8d62-8dd7d60a419b/machupicchu-IMG_2268-Edit-new.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=474c57c643bbe5bf6298c1ef709fb62506f7ed421dadf577870b011a15ea6b7d",
-  },
-]; */
-=======
->>>>>>> a028b6ba5fa2bf24fb1ae71af291f87973718294
 
 // Configuración para la validación de formularios
 const config = {
@@ -109,7 +73,7 @@ const profilePopup = new PopupWithForm("#popup-profile", (data) => {
   profilePopup.close();
 });
 //crear un nueva tarjeta
-const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
+/*const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
   const newCard = createCard(data.link, data.name);
   cardContainer.prepend(newCard);
   addCardPopup.close();
@@ -118,7 +82,30 @@ const showCardPopup = new PopupWithImage("#popup-show-card", () => {});
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   hobbieSelector: ".profile__hobbie",
-});
+});*/
+// Función para actualizar perfil
+function handleProfileUpdate(name, about) {
+  api
+    .updateUserProfile(name, about)
+    .then((updatedData) => {
+      profileName.textContent = updatedData.name;
+      profileJob.textContent = updatedData.about;
+      console.log("Perfil actualizado correctamente");
+    })
+    .catch((err) => console.error("Error al actualizar perfil:", err));
+}
+
+//Funcion para agregar una tarjeta
+function handleAddCard(name, link) {
+  api
+    .addNewCard(name, link)
+    .then((newCard) => {
+      const cardElement = createCard(newCard.link, newCard.name);
+      cardContainer.prepend(cardElement);
+      console.log("Tarjeta agregada correctamente");
+    })
+    .catch((err) => console.error("Error al agregar tarjeta:", err));
+}
 
 // Inicialización de la validación de formularios
 const profileFormValidator = new FormValidator(config, formProfile);
@@ -138,22 +125,6 @@ function createCard(link, name) {
   return card.generateCard();
 }
 
-<<<<<<< HEAD
-// Añadir las tarjetas iniciales al contenedor
-/* const section = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const newCard = createCard(item.link, item.name);
-      cardContainer.prepend(newCard);
-    },
-  },
-  ".elements__container"
-);
-section.renderItems(); */
-
-=======
->>>>>>> a028b6ba5fa2bf24fb1ae71af291f87973718294
 // Evento para abrir el popup de editar perfil
 profileButton.addEventListener("click", function () {
   const data = userInfo.getUserInfo();

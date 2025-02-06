@@ -15,9 +15,12 @@ export class UserInfo {
   }
 
   // Método público para establecer la nueva información del usuario
-  setUserInfo({ name, hobbie, newAvatarUrl }) {
+  setUserInfo({ name, hobbie }) {
     this._nameElement.textContent = name;
     this._hobbieElement.textContent = hobbie;
+  }
+
+  setUserInfo({ newAvatarUrl }) {
     this._avatar.src = newAvatarUrl;
   }
 }
