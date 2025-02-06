@@ -6,33 +6,6 @@ import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import { api } from "../utils/api.js";
 
-// Obtener información del usuario
-api
-  .getUserInfo()
-  .then((userData) => {
-    profileName.textContent = userData.name; // Actualizar nombre en la UI
-    profileHobbie.textContent = userData.about; // Actualizar ocupación en la UI
-  })
-  .catch((err) => console.error("Error al obtener datos del usuario:", err));
-
-//Llamando a las tarjetas
-api
-  .getInitialCards()
-  .then((initialCards) => {
-    const section = new Section(
-      {
-        items: initialCards,
-        renderer: (item) => {
-          const newCard = createCard(item.link, item.name); // Crear tarjeta
-          cardContainer.prepend(newCard); // Agregar la tarjeta al contenedor
-        },
-      },
-      ".elements__container"
-    );
-    section.renderItems(); // Renderizar todas las tarjetas
-  })
-  .catch((err) => console.error("Error al cargar tarjetas:", err));
-//poner 3 instancias de clase
 // Variables para modificar el perfil
 const popupProfile = document.querySelector("#popup-profile");
 const profileButton = document.querySelector(".profile__edit-button");
@@ -56,6 +29,12 @@ const createButton = document.querySelector(".form__submit"); //botón de crear 
 //Variables para agrandar imagen
 const popupCardImage = document.querySelector("#popup-show-card");
 const popupCardClose = document.querySelector(".popup__close-card");
+const inputAvatar = document.querySelector("#input-avatar-url");
+const profileAvatar = document.querySelector(".profile__avatar");
+
+//Variables para popup avatar
+const avatarButton = document.querySelector(".profile__edit-avatar");
+const popupAvatar = document.querySelector("#popup-avatar");
 
 // Configuración para la validación de formularios
 const config = {
@@ -67,130 +46,117 @@ const config = {
   errorClass: "form__input-error_active",
 };
 
-//Instancias de clase
-const profilePopup = new PopupWithForm("#popup-profile", (data) => {
-  userInfo.setUserInfo({ name: data.name, hobbie: data.hobbie });
-  profilePopup.close();
-});
-//crear un nueva tarjeta
-/*const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
-  const newCard = createCard(data.link, data.name);
-  cardContainer.prepend(newCard);
-  addCardPopup.close();
-});
-const showCardPopup = new PopupWithImage("#popup-show-card", () => {});
+//  Instancias de clases
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   hobbieSelector: ".profile__hobbie",
-});*/
-// Función para actualizar perfil
-function handleProfileUpdate(name, about) {
+  avatarSelector: ".profile__avatar",
+});
+
+// Popup de perfil
+const profilePopup = new PopupWithForm("#popup-profile", (data) => {
   api
-    .updateUserProfile(name, about)
+    .updateUserProfile(data.name, data.hobbie)
     .then((updatedData) => {
-      profileName.textContent = updatedData.name;
-      profileJob.textContent = updatedData.about;
-      console.log("Perfil actualizado correctamente");
+      userInfo.setUserInfo(updatedData);
+      profilePopup.close();
     })
     .catch((err) => console.error("Error al actualizar perfil:", err));
-}
+});
 
-//Funcion para agregar una tarjeta
-function handleAddCard(name, link) {
+// Popup para agregar tarjetas
+const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
   api
-    .addNewCard(name, link)
+    .addNewCard(data.name, data.link)
     .then((newCard) => {
       const cardElement = createCard(newCard.link, newCard.name);
       cardContainer.prepend(cardElement);
-      console.log("Tarjeta agregada correctamente");
+      addCardPopup.close();
     })
     .catch((err) => console.error("Error al agregar tarjeta:", err));
-}
+});
 
-// Inicialización de la validación de formularios
+// Popup para mostrar imágenes
+const showCardPopup = new PopupWithImage("#popup-show-card");
+
+// Popup para cambiar avatar
+const avatarPopup = new PopupWithForm("#popup-avatar", (data) => {
+  api
+    .updateUserAvatar(data.avatar)
+    .then((updatedData) => {
+      userInfo.setAvatar(updatedData.avatar);
+      avatarPopup.close();
+    })
+    .catch((err) => console.error("Error al actualizar avatar:", err));
+});
+
+// Cargar datos del usuario desde la API
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+  })
+  .catch((err) => console.error("Error al obtener datos del usuario:", err));
+
+// Cargar tarjetas desde la API
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    const section = new Section(
+      {
+        items: initialCards,
+        renderer: (item) => {
+          const newCard = createCard(item.link, item.name);
+          cardContainer.prepend(newCard);
+        },
+      },
+      ".elements__container"
+    );
+    section.renderItems();
+  })
+  .catch((err) => console.error("Error al cargar tarjetas:", err));
+
+//  Validaciones de formularios
 const profileFormValidator = new FormValidator(config, formProfile);
 profileFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, formAddCard);
 addCardFormValidator.enableValidation();
 
-// Función para agregar una tarjeta (card)
+//  Función para crear tarjetas
 function createCard(link, name) {
   const card = new Card(name, link, "#template__card", (link, name) => {
     showCardPopup.open();
-    popupCardImage.querySelector(".popup__photo-link").src = link;
-    popupCardImage.querySelector(".popup__photo-link").alt = name;
-    popupCardImage.querySelector(".popup__photo-name").textContent = name;
+    document.querySelector(".popup__photo-link").src = link;
+    document.querySelector(".popup__photo-link").alt = name;
+    document.querySelector(".popup__photo-name").textContent = name;
   });
   return card.generateCard();
 }
 
-// Evento para abrir el popup de editar perfil
-profileButton.addEventListener("click", function () {
+//  Eventos de apertura de popups
+profileButton.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
   inputName.value = data.name;
   inputHobbie.value = data.hobbie;
   profilePopup.open();
 });
 
-// Función para cerrar todos los popups
-function closeAnyPopup() {
-  profilePopup.close(); // Cierra el popup de perfil
-  addCardPopup.close(); // Cierra el popup de agregar tarjeta
-  showCardPopup.close(); // Cierra el popup de mostrar tarjeta
-}
+addButton.addEventListener("click", () => addCardPopup.open());
 
-// Usar en lugar de los listeners directos
-closeButton.addEventListener("click", closeAnyPopup);
-closeAddCardButton.addEventListener("click", closeAnyPopup);
-popupCardClose.addEventListener("click", closeAnyPopup);
-
-// Evento para manejar el envío del formulario de perfil
-formProfile.addEventListener("submit", function (evt) {
-  evt.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-  profileName.textContent = inputName.value; // Actualiza el nombre del perfil
-  profileHobbie.textContent = inputHobbie.value; // Actualiza el hobbie del perfil
-  profilePopup.close(); // Cierra el popup después de actualizar el perfil
+avatarButton.addEventListener("click", () => {
+  inputAvatar.value = "";
+  avatarPopup.open();
 });
 
-// Evento para abrir el popup de agregar tarjeta
-addButton.addEventListener("click", function () {
-  addCardPopup.open();
+//  Eventos para cerrar popups al hacer clic fuera
+document.querySelectorAll(".popup__overlay").forEach((overlay) => {
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      profilePopup.close();
+      addCardPopup.close();
+      showCardPopup.close();
+      avatarPopup.close();
+    }
+  });
 });
-
-// Evento para manejar el envío del formulario de agregar tarjeta
-formAddCard.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-
-  const name = inputCardName.value;
-  const link = inputLink.value;
-
-  if (name && link) {
-    const newCard = createCard(link, name);
-    cardContainer.prepend(newCard); // Añade la nueva tarjeta al contenedor
-
-    inputCardName.value = ""; // Resetea el campo de nombre
-    inputLink.value = ""; // Resetea el campo de enlace
-
-    addCardPopup.close(); // Cierra el popup después de agregar la tarjeta
-  }
-});
-
-//Cerrar los form presionando en el overlay
-popupAddCard
-  .querySelector(".popup__overlay")
-  .addEventListener("click", function () {
-    addCardPopup.close();
-  });
-
-popupProfile
-  .querySelector(".popup__overlay")
-  .addEventListener("click", function () {
-    profilePopup.close();
-  });
-
-popupCardImage
-  .querySelector(".popup__overlay")
-  .addEventListener("click", function () {
-    showCardPopup.close();
-  });
