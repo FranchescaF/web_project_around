@@ -1,9 +1,16 @@
 export class Card {
-  constructor(name, link, templateSelector, handleCardClick) {
+  constructor(
+    name,
+    link,
+    templateSelector,
+    handleCardClick,
+    handleDeleteClick
+  ) {
     this._name = name; //con el _ es que este encapsulado, otra persona no puede modificarlo
     this._link = link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getTemplate() {
@@ -26,7 +33,7 @@ export class Card {
     });
 
     btnDelete.addEventListener("click", () => {
-      cardElement.remove();
+      this._handleDeleteClick(this._element); // Llamamos a la función de eliminación
     });
 
     cardImage.addEventListener("click", () => {
@@ -42,7 +49,7 @@ export class Card {
     this._element.querySelector(".element__photo-link").alt = this._name;
     this._element.querySelector(".element__photo-name").textContent =
       this._name;
-
+    this;
     this._setEventListeners(this._element);
 
     return this._element;

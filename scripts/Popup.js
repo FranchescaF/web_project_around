@@ -25,6 +25,7 @@ export class Popup {
 
   // Método público para agregar los detectores de eventos
   setEventListeners() {
+    console.log("setEventListeners");
     // Cerrar el popup al hacer clic en el icono de cerrar
     this._popup.querySelector(".popup__close").addEventListener("click", () => {
       this.close();

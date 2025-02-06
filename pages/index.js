@@ -33,6 +33,9 @@ const profileAvatar = document.querySelector(".profile__avatar");
 const avatarButton = document.querySelector(".profile__edit-avatar");
 const popupAvatar = document.querySelector("#popup-avatar");
 
+//Variables para popup de confirmación
+const deletePopup = document.querySelector("#popup-delete");
+
 // Configuración para la validación de formularios
 const config = {
   formSelector: ".form",
@@ -60,7 +63,7 @@ const profilePopup = new PopupWithForm("#popup-profile", (data) => {
     })
     .catch((err) => console.error("Error al actualizar perfil:", err));
 });
-
+profilePopup.setEventListeners();
 // Popup para agregar tarjetas
 const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
   api
@@ -72,10 +75,10 @@ const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
     })
     .catch((err) => console.error("Error al agregar tarjeta:", err));
 });
-
+addCardPopup.setEventListeners();
 // Popup para mostrar imágenes
 const showCardPopup = new PopupWithImage("#popup-show-card");
-
+showCardPopup.setEventListeners();
 // Popup para cambiar avatar
 const avatarPopup = new PopupWithForm("#popup-avatar", (data) => {
   api
@@ -86,7 +89,7 @@ const avatarPopup = new PopupWithForm("#popup-avatar", (data) => {
     })
     .catch((err) => console.error("Error al actualizar avatar:", err));
 });
-
+avatarPopup.setEventListeners();
 // Cargar datos del usuario desde la API
 api
   .getUserInfo()
@@ -123,12 +126,20 @@ addCardFormValidator.enableValidation();
 
 //  Función para crear tarjetas
 function createCard(link, name) {
-  const card = new Card(name, link, "#template__card", (link, name) => {
-    showCardPopup.open();
-    document.querySelector(".popup__photo-link").src = link;
-    document.querySelector(".popup__photo-link").alt = name;
-    document.querySelector(".popup__photo-name").textContent = name;
-  });
+  const card = new Card(
+    name,
+    link,
+    "#template__card",
+    (link, name) => {
+      showCardPopup.open();
+      document.querySelector(".popup__photo-link").src = link;
+      document.querySelector(".popup__photo-link").alt = name;
+      document.querySelector(".popup__photo-name").textContent = name;
+    },
+    () => {
+      console.log("Eliminando tarjeta");
+    }
+  );
   return card.generateCard();
 }
 
@@ -158,3 +169,11 @@ document.querySelectorAll(".popup__overlay").forEach((overlay) => {
     }
   });
 });
+
+// Función para manejar la eliminación
+function handleDeleteClick(cardElement) {
+  deletePopup.open(() => {
+    cardElement.remove();
+    deletePopup.close();
+  });
+}
