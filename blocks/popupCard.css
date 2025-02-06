@@ -18,7 +18,7 @@
 }
 
 /* Botón para cerrar el popup */
-.popup__close-card {
+.popup__close {
   position: absolute;
   top: -41px;
   right: -40px;
@@ -55,7 +55,7 @@
 }
 
 @media (min-width: 501px) and (max-width: 768px) {
-  .popup__close-card {
+  .popup__close {
     top: -35px;
     right: -35px;
     width: 35px;
@@ -74,7 +74,7 @@
 }
 
 @media (max-width: 500px) {
-  .popup__close-card {
+  .popup__close {
     top: -35px;
     right: 8px;
     width: 30px;

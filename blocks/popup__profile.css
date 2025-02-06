@@ -82,7 +82,7 @@
   display: flex;
 }
 
-.form__close-button {
+.popup__close {
   width: 40px;
   height: 40px;
   position: absolute;
@@ -166,7 +166,7 @@ button:disabled {
     padding: 20px; /* Agrega padding para mejorar el diseño en pantallas medianas */
   }
 
-  .form__close-button {
+  .popup__close {
     top: -45px;
     left: 400px; /* Ajusta la posición del botón de cerrar */
   }
@@ -194,7 +194,7 @@ button:disabled {
     height: 322px; /* Deja que la altura se ajuste según el contenido */
   }
 
-  .form__close-button {
+  .popup__close {
     width: 26px;
     height: 26px;
     top: -35px;

@@ -2,7 +2,7 @@ export class UserInfo {
   constructor({ nameSelector, hobbieSelector, avatarSelector }) {
     this._nameElement = document.querySelector(nameSelector);
     this._hobbieElement = document.querySelector(hobbieSelector);
-    this._avatar = document.querySelector(avatarSelector);
+    this._avatarElement = document.querySelector(avatarSelector);
   }
 
   // Método público para obtener la información del usuario
@@ -20,7 +20,7 @@ export class UserInfo {
     this._hobbieElement.textContent = hobbie;
   }
 
-  setUserInfo({ newAvatarUrl }) {
+  setUserAvatar({ newAvatarUrl }) {
     this._avatar.src = newAvatarUrl;
   }
 }

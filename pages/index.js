@@ -14,7 +14,6 @@ const profileHobbie = document.querySelector(".profile__hobbie");
 const inputName = document.querySelector("#input-name");
 const inputHobbie = document.querySelector("#input-hobbie");
 const formProfile = document.querySelector("#form-profile");
-const closeButton = document.querySelector(".form__close-button-profile");
 // Variables para agregar tarjetas (cards)
 const cardContainer = document.querySelector(".elements__container");
 const popupAddCard = document.querySelector("#popup-add-card");
@@ -22,9 +21,7 @@ const formAddCard = document.querySelector("#form-addCard");
 const addButton = document.querySelector(".profile__add-button");
 const inputCardName = document.querySelector("#input-card-name");
 const inputLink = document.querySelector("#input-card-link");
-const closeAddCardButton = document.querySelector(
-  ".form__close-button-addCard"
-);
+const closeButton = document.querySelector(".popup__close");
 const createButton = document.querySelector(".form__submit"); //botón de crear y guardar
 //Variables para agrandar imagen
 const popupCardImage = document.querySelector("#popup-show-card");
@@ -95,6 +92,7 @@ api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar({ newAvatarUrl: userData.avatar });
   })
   .catch((err) => console.error("Error al obtener datos del usuario:", err));
 
