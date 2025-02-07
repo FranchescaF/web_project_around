@@ -1,9 +1,24 @@
 import { Popup } from "./Popup.js";
 export class PopupWithConfirmation extends Popup {
-  constructor(popupSelector) {
-    super(popupSelector); // Llama al constructor de Popup
-    this._form = this._popupElement.querySelector(".popup__form");
-    this._confirmButton = this._popupElement.querySelector(".form__delete");
+  constructor(popupSelector, handleFormSubmit) {
+    super(popupSelector);
+    this._handleFormSubmit = handleFormSubmit;
+    this._form = this._popup.querySelector(".form");
+    this._inputList = this._form
+      ? this._form.querySelectorAll(".form__input")
+      : [];
+    this._submitButton = this._form
+      ? this._form.querySelector(".form__submit")
+      : null;
+
+    if (!this._submitButton) {
+      console.error(
+        `No se encontró el botón de envío en el popup: ${popupSelector}`
+      );
+      return;
+    }
+
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   open(handleConfirm) {

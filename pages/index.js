@@ -34,9 +34,6 @@ const profileAvatar = document.querySelector(".profile__avatar");
 const avatarButton = document.querySelector(".profile__edit-avatar");
 const popupAvatar = document.querySelector("#popup-avatar");
 
-//Variables para popup de confirmación
-const deletePopup = new PopupWithConfirmation("#popup-delete");
-deletePopup.setEventListeners();
 // Configuración para la validación de formularios
 const config = {
   formSelector: ".form",
@@ -91,6 +88,10 @@ const avatarPopup = new PopupWithForm("#popup-avatar", (data) => {
     .catch((err) => console.error("Error al actualizar avatar:", err));
 });
 avatarPopup.setEventListeners();
+// Popup de confirmación de eliminación
+const deletePopup = new PopupWithConfirmation("#popup-delete");
+deletePopup.setEventListeners();
+
 // Cargar datos del usuario desde la API
 api
   .getUserInfo()
@@ -139,8 +140,13 @@ function createCard(link, name) {
     },
     (cardElement) => {
       deletePopup.open(() => {
-        cardElement.remove();
-        deletePopup.close();
+        api
+          .deleteCard(cardElement.id) // Si usas una API, añade el ID real
+          .then(() => {
+            cardElement.remove();
+            deletePopup.close();
+          })
+          .catch((err) => console.error("Error al eliminar tarjeta:", err));
       });
     }
   );
@@ -175,9 +181,9 @@ document.querySelectorAll(".popup__overlay").forEach((overlay) => {
 });
 
 // Función para manejar la eliminación
-function handleDeleteClick(cardElement) {
+/*function handleDeleteClick(cardElement) {
   deletePopup.open(() => {
     cardElement.remove();
     deletePopup.close();
   });
-}
+}*/
