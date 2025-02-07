@@ -1,6 +1,7 @@
 import { Card } from "../scripts/Card.js";
 import { PopupWithForm } from "../scripts/PopupWithForms.js";
 import { PopupWithImage } from "../scripts/PopupWithImage.js";
+import { PopupWithConfirmation } from "../scripts/PopupWithConfirmation.js";
 import { Section } from "../scripts/Section.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 import { FormValidator } from "../scripts/FormValidator.js";
@@ -34,8 +35,8 @@ const avatarButton = document.querySelector(".profile__edit-avatar");
 const popupAvatar = document.querySelector("#popup-avatar");
 
 //Variables para popup de confirmación
-const deletePopup = document.querySelector("#popup-delete");
-
+const deletePopup = new PopupWithConfirmation("#popup-delete");
+deletePopup.setEventListeners();
 // Configuración para la validación de formularios
 const config = {
   formSelector: ".form",
@@ -136,8 +137,11 @@ function createCard(link, name) {
       document.querySelector(".popup__photo-link").alt = name;
       document.querySelector(".popup__photo-name").textContent = name;
     },
-    () => {
-      console.log("Eliminando tarjeta");
+    (cardElement) => {
+      deletePopup.open(() => {
+        cardElement.remove();
+        deletePopup.close();
+      });
     }
   );
   return card.generateCard();
