@@ -24,11 +24,7 @@
       </header>
       <section class="profile">
         <div class="profile__avatar-container">
-          <img
-            class="profile__avatar"
-            src="./images/Avatar.jpg"
-            alt="Avatar de Jacques Cousteau"
-          />
+          <img class="profile__avatar" src="" alt="Avatar" />
           <button class="profile__edit-avatar" aria-label="Editar Avatar">
             <img
               src="./images/edit_avatar.png"
@@ -159,19 +155,15 @@
     </div>
     <!-- Ventana emergente de eliminar-->
     <div class="popup" id="popup-delete">
-      <div class="form popup__overlay"></div>
-      <form class="form popup__form" id="form-delete" novalidate>
-        <img
-          class="popup__close"
-          src="images/Close Icon.png"
-          alt="boton para cerrar"
-          id="close-form"
-        />
+      <div class="popup__overlay"></div>
+      <form class="popup__form" id="form-delete" novalidate>
+        <button type="button" class="popup__close" id="close-form">✖</button>
         <p class="form__title">¿Estás seguro/a?</p>
         <span class="input-error input-hobbie-error"></span>
-        <button type="reset" class="form__delete" disabled>Si</button>
+        <button type="submit" class="form__delete" disabled>Si</button>
       </form>
     </div>
+
     <!-- Editar foto de avatar-->
     <div class="popup" id="popup-avatar">
       <div class="popup__overlay"></div>
