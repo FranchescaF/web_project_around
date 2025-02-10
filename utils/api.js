@@ -62,8 +62,42 @@ class Api {
     return fetch(this.baseUrl + "/cards", {
       method: "POST",
       headers: this.headers,
-
       body: JSON.stringify({ name, link }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res
+            .json()
+            .then((err) =>
+              Promise.reject(`Error: ${err.message || res.status}`)
+            );
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.error("Error al agregar la tarjeta:", err);
+        return Promise.reject(err); // Asegurar que se propague el error
+      });
+  }
+
+  //5. Alternar "me gusta" en una tarjeta
+  toggleLike(cardId, isLiked) {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this.headers,
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+      return res.json();
+    });
+  }
+  // 6. Actualizar el avatar del usuario
+  updateUserAvatar(avatarUrl) {
+    return fetch(this.baseUrl + "/users/me/avatar", {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({ avatar: avatarUrl }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -71,13 +105,16 @@ class Api {
         }
         return res.json();
       })
-      .catch((err) => console.error("Error al agregar la tarjeta:", err));
+      .then((result) => {
+        console.log("Avatar actualizado:", result);
+        return result;
+      });
   }
 
-  //5. Alternar "me gusta" en una tarjeta
-  toggleLike(cardId, isLiked) {
-    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-      method: isLiked ? "DELETE" : "PUT",
+  //7. Eliminar una tarjeta
+  removeCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
       headers: this.headers,
     }).then((res) => {
       if (!res.ok) {
