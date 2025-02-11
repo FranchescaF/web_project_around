@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .addNewCard(data.name, data.link)
       .then((newCard) => {
         console.log("Tarjeta añadida:", newCard);
-        const cardElement = createCard(newCard.link, newCard.name);
+        const cardElement = createCard(newCard.link, newCard.name, newCard._id);
         cardContainer.prepend(cardElement);
         addCardPopup.close();
       })
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         name: userData.name,
         hobbie: userData.about,
       });
-      userInfo.setUserAvatar({ newAvatarUrl: userData.avatar });
+      userInfo.setUserAvatar(userData.avatar);
     })
     .catch((err) => console.error("Error al obtener datos del usuario:", err));
 
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addCardFormValidator.enableValidation();
 
   //  Función para crear tarjetas
-  function createCard(link, name) {
+  function createCard(link, name, cardId) {
     const card = new Card(
       name,
       link,
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
       (cardElement) => {
         deletePopup.open(() => {
           api
-            .removeCard(id) // Llamamos a la API con el ID de la tarjeta
+            .removeCard(cardId) // Llamamos a la API con el ID de la tarjeta
             .then(() => {
               cardElement.remove(); // Eliminamos la tarjeta del DOM si la API responde correctamente
               deletePopup.close();

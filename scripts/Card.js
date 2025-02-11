@@ -4,13 +4,17 @@ export class Card {
     link,
     templateSelector,
     handleCardClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick,
+    cardId
   ) {
     this._name = name; //con el _ es que este encapsulado, otra persona no puede modificarlo
     this._link = link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._cardId = cardId; // Guardar el ID de la tarjeta
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -33,7 +37,7 @@ export class Card {
     });
 
     btnDelete.addEventListener("click", () => {
-      this._handleDeleteClick(this._element); // Llamamos a la función de eliminación
+      this._handleDeleteClick(this._element, this._cardId); // Llamamos a la función de eliminación
     });
 
     cardImage.addEventListener("click", () => {
