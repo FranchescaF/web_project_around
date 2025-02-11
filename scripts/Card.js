@@ -5,16 +5,18 @@ export class Card {
     templateSelector,
     handleCardClick,
     handleDeleteClick,
-    likes,
+    handleLikeClick,
+    isLiked,
     cardId
   ) {
-    this._name = name; //con el _ es que este encapsulado, otra persona no puede modificarlo
+    this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
-    this._cardId = cardId; // Guardar el ID de la tarjeta
-    this._likes = likes; // Guardar la cantidad de "me gusta" de la tarjeta
+    this._handleLikeClick = handleLikeClick;
+    this._cardId = cardId;
+    this._isLiked = isLiked; // Estado inicial del like
   }
 
   _getTemplate() {
@@ -26,35 +28,45 @@ export class Card {
     return cardElement;
   }
 
-  // establece los listeners de eventos para los elementos de la tarjeta.
-  _setEventListeners(cardElement) {
-    const btnLike = cardElement.querySelector(".element__photo-like");
-    const btnDelete = cardElement.querySelector(".element__photo-trash");
-    const cardImage = cardElement.querySelector(".element__photo-link");
-
-    btnLike.addEventListener("click", () => {
-      btnLike.classList.toggle("element__photo-like_active");
-    });
-
-    btnDelete.addEventListener("click", () => {
-      this._handleDeleteClick(this._element, this._cardId); // Llamamos a la función de eliminación
-    });
-
-    cardImage.addEventListener("click", () => {
-      this._handleCardClick(this._link, this._name);
-    });
+  _setEventListeners() {
+    this._btnLike.addEventListener("click", () => this._toggleLike());
+    this._btnDelete.addEventListener("click", () =>
+      this._handleDeleteClick(this._element)
+    );
+    this._cardImage.addEventListener("click", () =>
+      this._handleCardClick(this._link, this._name)
+    );
   }
 
-  //genera y retorna la tarjeta.
+  _toggleLike() {
+    this._handleLikeClick(this._cardId, this._isLiked)
+      .then((newState) => {
+        this._isLiked = newState; // Actualizar el estado localmente
+        this._updateLikeButton();
+      })
+      .catch((err) => console.error("Error al alternar 'me gusta':", err));
+  }
+
+  _updateLikeButton() {
+    if (this._isLiked) {
+      this._btnLike.classList.add("element__photo-like_active");
+    } else {
+      this._btnLike.classList.remove("element__photo-like_active");
+    }
+  }
+
   generateCard() {
-    //Llama al método _getTemplate para obtener el elemento de la tarjeta
     this._element = this._getTemplate();
-    this._element.querySelector(".element__photo-link").src = this._link;
-    this._element.querySelector(".element__photo-link").alt = this._name;
+    this._btnLike = this._element.querySelector(".element__photo-like");
+    this._btnDelete = this._element.querySelector(".element__photo-trash");
+    this._cardImage = this._element.querySelector(".element__photo-link");
     this._element.querySelector(".element__photo-name").textContent =
       this._name;
-    this;
-    this._setEventListeners(this._element);
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+
+    this._updateLikeButton(); // Aplica el estado inicial del like
+    this._setEventListeners();
 
     return this._element;
   }

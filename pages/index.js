@@ -117,7 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           items: initialCards,
           renderer: (item) => {
-            const newCard = createCard(item.link, item.name, item._id);
+            const newCard = createCard(
+              item.link,
+              item.name,
+              item._id,
+              item.isLiked
+            );
             cardContainer.prepend(newCard);
           },
         },
@@ -135,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addCardFormValidator.enableValidation();
 
   //  Función para crear tarjetas
-  function createCard(link, name, cardId) {
+  function createCard(link, name, cardId, isLiked) {
     const card = new Card(
       name,
       link,
@@ -156,8 +161,20 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch((err) => console.error("Error al eliminar tarjeta:", err));
         });
-      }
+      },
+      (cardId, isLiked) => {
+        return api
+          .toggleLike(cardId, isLiked)
+          .then(() => !isLiked)
+          .catch((err) => {
+            console.error("Error al alternar 'me gusta':", err);
+            return isLiked;
+          });
+      },
+      isLiked,
+      cardId
     );
+
     return card.generateCard();
   }
 
