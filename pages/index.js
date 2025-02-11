@@ -66,11 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Popup para agregar tarjetas
   const addCardPopup = new PopupWithForm("#popup-add-card", (data) => {
-    api
+    console.log("Datos de la tarjeta:", data);
+    return api
       .addNewCard(data.name, data.link)
       .then((newCard) => {
         console.log("Tarjeta añadida:", newCard);
-        const cardElement = createCard(newCard);
+        const cardElement = createCard(newCard.link, newCard.name);
         cardContainer.prepend(cardElement);
         addCardPopup.close();
       })
@@ -86,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     api
       .updateUserAvatar(data.avatar)
       .then((updatedData) => {
-        userInfo.setAvatar(updatedData.avatar);
+        userInfo.setUserAvatar(data.avatar);
         avatarPopup.close();
       })
       .catch((err) => console.error("Error al actualizar avatar:", err));

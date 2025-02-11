@@ -21,7 +21,7 @@ export class UserInfo {
     if (hobbie) this._hobbieElement.textContent = hobbie;
   }
 
-  setUserAvatar({ newAvatarUrl }) {
+  setUserAvatar(newAvatarUrl) {
     this._avatarElement.src = newAvatarUrl;
   }
 }
