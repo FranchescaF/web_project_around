@@ -5,7 +5,7 @@ export class Card {
     templateSelector,
     handleCardClick,
     handleDeleteClick,
-    handleLikeClick,
+    likes,
     cardId
   ) {
     this._name = name; //con el _ es que este encapsulado, otra persona no puede modificarlo
@@ -14,7 +14,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._cardId = cardId; // Guardar el ID de la tarjeta
-    this._handleLikeClick = handleLikeClick;
+    this._likes = likes; // Guardar la cantidad de "me gusta" de la tarjeta
   }
 
   _getTemplate() {

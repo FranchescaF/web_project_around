@@ -85,13 +85,19 @@ class Api {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
       headers: this.headers,
-    }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-      }
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject(`Error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.error("Error al alternar 'me gusta':", err);
+        return Promise.reject(err);
+      });
   }
+
   // 6. Actualizar el avatar del usuario
   updateUserAvatar(avatarUrl) {
     return fetch(this.baseUrl + "/users/me/avatar", {
