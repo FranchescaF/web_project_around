@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((initialCards) => {
       const section = new Section(
         {
-          items: initialCards,
+          items: initialCards.reverse(),
           renderer: (item) => {
             const newCard = createCard(
               item.link,
