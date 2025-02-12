@@ -4,7 +4,7 @@
 
 ## 1. Resumen del proyecto
 
-**WEB PROJECT AROUND** es una pagina web interactiva como Instagram, donde el usuario va poder dar like y dislike a una foto, va poder agregar fotos, va poder cambiar el nombre de usuario. Se hizo funcional y se valido los formularios de agregar tarjeta y modificar perfil, esta refactorizado utilizando los principios de POO(Programación Orientado a Objetos) siguiendo la relación de clases mediante acoplamiento débil y se ha dividido en diferentes carpetas de js para mayor comprensión.
+**WEB PROJECT AROUND** es una pagina web interactiva como Instagram, donde el usuario va poder dar like y dislike a una foto, va poder agregar fotos, va poder cambiar el nombre de usuario, su avatar. Se hizo funcional y se valido los formularios de agregar tarjeta y modificar perfil, este proyecto ha sido desarrollado siguiendo las mejores prácticas de Programación Orientada a Objetos (POO), incorporando interactividad avanzada y conectándose con una API para el almacenamiento y gestión de datos en tiempo real. Actualmente, está completado como una aplicación en JavaScript Vanilla, y el siguiente paso es refactorizarlo para React. 💪.
 
 ### Prototipos de Alta Fidelidad:
 
@@ -16,15 +16,41 @@ Cuadro emergente "Editar perfil":
 
 ![aquí](./images/emergente.png)
 
-## 5. Lenguajes y Herramientas Utilizadas
-
-En el desarrollo de nuestro proyecto, hemos utilizado un lenguaje de programación y herramientas para garantizar su funcionalidad y diseño. A continuación, detallamos el principal lenguaje y herramientas que forman parte de nuestro proyecto:
-
-### Herramientas de Programación
+## 5. Características Principales
 
 - **HTML Semántico:** Utilizado para estructurar y marcar nuestra página web de manera clara y accesible, definiendo la disposición y los elementos visuales de forma adecuada.
 
 - **CSS Responsive:** Utilizado para diseñar y presentar la interfaz de manera que mejora la experiencia del usuario. Se han aplicado estilos, colores y diseños mediante media queries, flexbox y grid para asegurar una visualización óptima en diversos dispositivos y tamaños de pantalla.
+
+-**Programación Orientada a Objetos (POO):** Se implementaron clases para encapsular y organizar funcionalidades específicas.
+
+-**Interactividad Avanzada:** Los usuarios pueden:
+
+- Dar "me gusta" a las tarjetas.
+
+- Eliminar tarjetas existentes (con confirmación previa).
+
+- Crear nuevas tarjetas.
+
+- Ver las imágenes en un popup modal.
+
+-**Validación de Formularios:** Cada campo del formulario es validado, mostrando mensajes de error cuando es necesario, mejorando la experiencia del usuario.
+
+-**Optimización con Webpack:**
+
+- Uso de Webpack para empaquetar archivos.
+
+- Babel para la transpilación de JavaScript moderno.
+
+- Minificación y autoprefixing de CSS.
+
+-**Integración con API:**
+
+- Carga de información del usuario y tarjetas iniciales desde un servidor.
+
+- Gestor de datos de perfil.
+
+- Sincronización de "me gusta" en tiempo real.
 
 ### Lenguaje de Programación
 
@@ -33,10 +59,8 @@ En el desarrollo de nuestro proyecto, hemos utilizado un lenguaje de programaci�
 ### Herramientas Adicionales
 
 - **Control de Versiones (Git):** Esencial para el seguimiento eficiente de cambios en el código.
-- **Prototipado y Diseño de Interfaz (Figma):** Utilizado para el prototipado y diseño de la interfaz, permitiendo la creación de maquetas visuales y la planificación de la experiencia de usuario. [Prototipo-figma](https://www.figma.com/design/vxxm1ZnAdQiBLoX7xYKY6g/Web_Brief_Sprint_5_ES-%7C-Alrededor-de-los-EEUU-%7C-desktop-%2B-mobile?node-id=9492-2&t=uBYQY8HCCu7kJEH1-1)
+- **Prototipado y Diseño de Interfaz (Figma):** Utilizado para el prototipado y diseño de la interfaz, permitiendo la creación de maquetas visuales y la planificación de la experiencia de usuario. [Prototipo-figma](https://www.figma.com/design/7y3qT82qkZjXO7xvdzJ4pA/Sprint-12-Around-US-ES?node-id=0-1&node-type=canvas&t=CDOIzTkreRq4iYhd-0)
 - **Visual Studio Code:** Se ha utilizado Visual Studio Code como entorno de desarrollo para la implementación del diseño y la gestión del código.
-
-Este lenguaje y herramientas nos han permitido desarrollar una aplicación web completa y funcional, con un diseño atractivo y una experiencia de usuario optimizada. La combinación de HTML semántico, CSS responsive, JavaScript y herramientas como Git y Figma ha sido crucial para lograr un producto robusto, interactivo y de alta calidad.
 
 ## 6. Responsividad
 
